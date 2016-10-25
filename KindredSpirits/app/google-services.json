@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "813335957235",
+    "firebase_url": "https://kindred-spirits.firebaseio.com",
+    "project_id": "kindred-spirits",
+    "storage_bucket": "kindred-spirits.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813335957235:android:0596ce8eae2b0d00",
+        "android_client_info": {
+          "package_name": "com.chandler.android.aca.kindredspirits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813335957235-6qc0v3b9v7k9kooob7gl2p68mr3jn4ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPNs0zEMgbnuptrnmXvrW3Hazu7LaFvGk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
