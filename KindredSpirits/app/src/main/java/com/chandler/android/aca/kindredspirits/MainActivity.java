@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button mNoteActivity;
     Button mKindnessActivity;
     Button mHotlineActivity;
+    Button mLoginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         mNoteActivity = (Button) findViewById(R.id.buttonNoteActivity);
         mKindnessActivity = (Button) findViewById(R.id.buttonKindnessActivity);
         mHotlineActivity = (Button) findViewById(R.id.buttonHotlineActivity);
+        mLoginActivity = (Button) findViewById(R.id.buttonLoginActivity);
 
        // ButterKnife.bind(this);
 
@@ -44,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HotlineActivity.class));
+            }
+        });
+
+        mLoginActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }
