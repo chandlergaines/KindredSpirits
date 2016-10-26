@@ -28,6 +28,7 @@ public class NoteDialogNew extends DialogFragment{
     private static final int CAMERA_REQUEST = 123;
     private ImageView mImageView;
     private Button mAddPhoto;
+    //todo bindview these things when you have the sanity
 
 
     public String mCurrentPhotoPath;

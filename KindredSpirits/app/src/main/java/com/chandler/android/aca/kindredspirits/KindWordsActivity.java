@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class KindWordsActivity extends AppCompatActivity implements SensorEventListener{
 
     private KindBook mKindBook = new KindBook();
@@ -19,19 +22,17 @@ public class KindWordsActivity extends AppCompatActivity implements SensorEventL
     private final static float ACC = 15; //todo keep this or no?
     SensorManager mSensorManager;
 
-    //@BindView(R.id.kindText) TextView mKindnessTextView;
-    //@BindView(R.id.kindBtn) Button mKindButton;
+    @BindView(R.id.kindText) TextView mKindnessTextView;
+    @BindView(R.id.kindBtn) Button mKindButton;
 
-    TextView mKindnessTextView;
-    Button mKindButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kind_words);
 
-        mKindnessTextView = (TextView) findViewById(R.id.kindText);
-        mKindButton = (Button) findViewById(R.id.kindBtn);
+        ButterKnife.bind(this);
 
         mKindButton.setOnClickListener(new View.OnClickListener() {
             @Override

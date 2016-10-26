@@ -6,27 +6,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-   // @BindView(R.id.buttonNoteActivity) Button mNoteActivity;
-   // @BindView(R.id.buttonKindnessActivity) Button mKindnessActivity;
+   @BindView(R.id.buttonNoteActivity) Button mNoteActivity;
+   @BindView(R.id.buttonKindnessActivity) Button mKindnessActivity;
 
-    Button mNoteActivity;
-    Button mKindnessActivity;
-    Button mHotlineActivity;
-    Button mLoginActivity;
+
+
+    @BindView(R.id.buttonHotlineActivity) Button mHotlineActivity;
+    @BindView(R.id.buttonLoginActivity) Button mLoginActivity;
+    @BindView(R.id.buttonRegistrationActivity) Button mRegistrationActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNoteActivity = (Button) findViewById(R.id.buttonNoteActivity);
-        mKindnessActivity = (Button) findViewById(R.id.buttonKindnessActivity);
-        mHotlineActivity = (Button) findViewById(R.id.buttonHotlineActivity);
-        mLoginActivity = (Button) findViewById(R.id.buttonLoginActivity);
+       ButterKnife.bind(this);
 
-       // ButterKnife.bind(this);
+        mRegistrationActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+            }
+        });
 
         mNoteActivity.setOnClickListener(new View.OnClickListener() {
             @Override

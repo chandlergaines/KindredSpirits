@@ -41,12 +41,22 @@
         android:id="@+id/buttonHotlineActivity"/>
 
     <Button
-        android:text="Login"
+    android:text="Login"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/buttonHotlineActivity"
+    android:layout_alignLeft="@+id/buttonNoteActivity"
+    android:layout_alignStart="@+id/buttonNoteActivity"
+    android:layout_marginTop="15dp"
+    android:id="@+id/buttonLoginActivity"/>
+
+    <Button
+        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonHotlineActivity"
+        android:layout_below="@+id/buttonLoginActivity"
         android:layout_alignLeft="@+id/buttonNoteActivity"
         android:layout_alignStart="@+id/buttonNoteActivity"
         android:layout_marginTop="15dp"
-        android:id="@+id/buttonLoginActivity"/>
+        android:id="@+id/buttonRegistrationActivity"/>
 </RelativeLayout>
