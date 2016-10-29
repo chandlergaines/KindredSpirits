@@ -59,4 +59,14 @@
         android:layout_alignStart="@+id/buttonNoteActivity"
         android:layout_marginTop="15dp"
         android:id="@+id/buttonRegistrationActivity"/>
+
+    <Button
+        android:text="Breathe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonRegistrationActivity"
+        android:layout_alignLeft="@+id/buttonRegistrationActivity"
+        android:layout_alignStart="@+id/buttonRegistrationActivity"
+        android:layout_marginTop="15dp"
+        android:id="@+id/buttonBreathingActivity"/>
 </RelativeLayout>

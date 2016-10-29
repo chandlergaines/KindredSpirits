@@ -11,14 +11,12 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-   @BindView(R.id.buttonNoteActivity) Button mNoteActivity;
-   @BindView(R.id.buttonKindnessActivity) Button mKindnessActivity;
-
-
-
+    @BindView(R.id.buttonNoteActivity) Button mNoteActivity;
+    @BindView(R.id.buttonKindnessActivity) Button mKindnessActivity;
     @BindView(R.id.buttonHotlineActivity) Button mHotlineActivity;
     @BindView(R.id.buttonLoginActivity) Button mLoginActivity;
     @BindView(R.id.buttonRegistrationActivity) Button mRegistrationActivity;
+    @BindView(R.id.buttonBreathingActivity) Button mBreathingActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        mBreathingActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BreathingActivity.class));
             }
         });
     }
