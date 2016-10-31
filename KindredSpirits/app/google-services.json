@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "813335957235-t14j7smui1092req9d8tcgl6te3bm9nq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chandler.android.aca.kindredspirits",
+            "certificate_hash": "13B7605C85238CC14ED522DA6ABC5CF9ABA380E8"
+          }
+        },
+        {
           "client_id": "813335957235-6qc0v3b9v7k9kooob7gl2p68mr3jn4ju.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813335957235-6qc0v3b9v7k9kooob7gl2p68mr3jn4ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
