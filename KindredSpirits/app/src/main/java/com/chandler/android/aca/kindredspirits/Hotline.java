@@ -11,7 +11,7 @@ public class Hotline {
     }
 
     public void setHotlineNumber(String hotlineNumber) {
-        mHotlineNumber = hotlineNumber;
+        this.mHotlineNumber = hotlineNumber;
     }
 
     public String getHotlineTitle() {
@@ -19,7 +19,7 @@ public class Hotline {
     }
 
     public void setHotlineTitle(String hotlineTitle) {
-        mHotlineTitle = hotlineTitle;
+        this.mHotlineTitle = hotlineTitle;
     }
 
     public String getHotlineDescription() {
@@ -27,7 +27,7 @@ public class Hotline {
     }
 
     public void setHotlineDescription(String hotlineDescription) {
-        mHotlineDescription = hotlineDescription;
+        this.mHotlineDescription = hotlineDescription;
     }
 
     //todo create a string array resource

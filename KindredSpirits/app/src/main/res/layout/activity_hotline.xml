@@ -11,11 +11,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.chandler.android.aca.kindredspirits.HotlineActivity">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listViewHotline"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".HotlineActivity"
+        tools:showIn="@layout/activity_hotline"/>
 </RelativeLayout>
