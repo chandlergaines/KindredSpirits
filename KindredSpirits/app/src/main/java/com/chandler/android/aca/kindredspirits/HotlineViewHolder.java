@@ -8,28 +8,21 @@ import android.widget.TextView;
 public class HotlineViewHolder extends RecyclerView.ViewHolder {
 
     private Hotline mHotline;
+    public TextView mTitle;
+    public TextView mDescription;
+    public TextView mNumber;
+    public Button mCallButton;
 
     public HotlineViewHolder(View itemView) {
         super(itemView);
 
-        TextView txtTitle = (TextView) itemView.findViewById(R.id.hotlineTextTitle);
+        mTitle = (TextView) itemView.findViewById(R.id.hotlineTextTitle);
 
-        TextView txtDescription = (TextView) itemView.findViewById(R.id.hotlineTextDesc);
+        mDescription = (TextView) itemView.findViewById(R.id.hotlineTextDesc);
 
-        TextView txtNumber = (TextView) itemView.findViewById(R.id.hotlineNumber);
+        mNumber = (TextView) itemView.findViewById(R.id.hotlineNumberTxt);
 
-     /*   txtTitle.setText(mHotline.getHotlineTitle());
-        txtDescription.setText(mHotline.getHotlineTitle());
-        txtNumber.setText(mHotline.getHotlineNumber());*/
-
-        Button callButton = (Button) itemView.findViewById(R.id.button);
-
-        callButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //todo put dialer stuff in here
-            }
-        });
+        mCallButton = (Button) itemView.findViewById(R.id.buttonCall);
 
     }
 

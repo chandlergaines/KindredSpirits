@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +34,16 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
 
     @Override
     public void onBindViewHolder(HotlineViewHolder holder, int position) {
-        Hotline hotline = mHotlineList.get(position);
+        Hotline mHotline = mHotlineList.get(position);
 
-        TextView txtTitle = (TextView) mRecyclerView.findViewById(R.id.hotlineTextTitle);
-        TextView txtDescription = (TextView) mRecyclerView.findViewById(R.id.hotlineTextDesc);
-        TextView txtNumber = (TextView) mRecyclerView.findViewById(R.id.hotlineNumberTxt);
+       /* TextView mTitle = (TextView) mRecyclerView.findViewById(R.id.hotlineTextTitle);
+        TextView mDescription = (TextView) mRecyclerView.findViewById(R.id.hotlineTextDesc);
+        TextView mNumber = (TextView) mRecyclerView.findViewById(R.id.hotlineNumberTxt);
+        Button mCallButton = (Button) mRecyclerView.findViewById(R.id.buttonCall);*/
+
+        holder.mTitle.setText(mHotline.getHotlineTitle());
+        holder.mDescription.setText(mHotline.getHotlineTitle());
+        holder.mNumber.setText(mHotline.getHotlineNumber());
     }
 
     @Override
