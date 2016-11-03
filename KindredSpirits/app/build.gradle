@@ -50,14 +50,15 @@ dependencies {
     ///////////////
     //firebase   //
     ///////////////
-    compile 'com.google.firebase:firebase-auth:9.8.0'
-    compile 'com.google.firebase:firebase-messaging:9.8.0'
-    compile 'com.google.firebase:firebase-database:9.8.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
+    compile 'com.google.firebase:firebase-messaging:9.6.0'
+    compile 'com.google.firebase:firebase-database:9.6.0'
+    compile 'com.google.firebase:firebase-crash:9.6.0'
     ///////////////
     //google     //
     ///////////////
-    compile 'com.google.android.gms:play-services-auth:9.8.0'
-    compile 'com.google.android.gms:play-services-gcm:9.8.0'
+    compile 'com.google.android.gms:play-services-auth:9.6.0'
+    compile 'com.google.android.gms:play-services-gcm:9.6.0'
     ///////////////
     //square     //
     ///////////////

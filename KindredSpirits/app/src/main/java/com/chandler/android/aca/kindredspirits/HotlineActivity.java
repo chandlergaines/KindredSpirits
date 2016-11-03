@@ -1,5 +1,7 @@
 package com.chandler.android.aca.kindredspirits;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -88,6 +90,24 @@ public class HotlineActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HotlineDetail.class);
                 intent.putExtra("Hotline", mHotlineAdapter.getHotlineList().get(position));
                 startActivity(intent);
+
+                // Get a fragment manager
+                FragmentManager fManager = getFragmentManager();
+
+                // Create a new fragment using the manager
+                // Passing in the id of the layout to hold it
+                Fragment frag = fManager.findFragmentById(R.id.fragmentHolder);
+
+                // Check the fragment has not already been initialized
+                if(frag == null){
+
+                    // Initialize the fragment based on our SimpleFragment
+                    frag = new HotlineDetail();
+                    fManager.beginTransaction()
+                            .add(R.id.fragmentHolder, frag)
+                            .commit();
+
+                }
             }
 
             @Override
@@ -135,9 +155,14 @@ public class HotlineActivity extends AppCompatActivity {
         mConditionRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String text = dataSnapshot.getValue(String.class);
-               // mHotlineTitle.setText(text);
-                Log.e("Database pull result", "Value is: " + text);
+                for(int i = 1; i<= 12; i++) {
+                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
+                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
+                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
+                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
+                    }
+                }
+                Log.e("Database pull result", "Value is: ");
             }
 
             @Override
@@ -159,6 +184,13 @@ public class HotlineActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mHotline = null;
+                for(int i = 1; i<= 12; i++) {
+                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
+                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
+                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
+                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
+                    }
+                }
                 mHotline = dataSnapshot.getValue(Hotline.class);
                 hotlinePosition = mHotline.getHotlineItem();
                 hotlinePosition++;

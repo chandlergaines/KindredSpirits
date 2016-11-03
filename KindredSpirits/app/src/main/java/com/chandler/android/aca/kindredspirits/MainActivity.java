@@ -3,8 +3,12 @@ package com.chandler.android.aca.kindredspirits;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,13 +21,17 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.buttonLoginActivity) Button mLoginActivity;
     @BindView(R.id.buttonRegistrationActivity) Button mRegistrationActivity;
     @BindView(R.id.buttonBreathingActivity) Button mBreathingActivity;
+    @BindView(R.id.button3) Button mFirebase;
+    @BindView(R.id.button5) Button mLogout;
+
+    FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         mRegistrationActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +72,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BreathingActivity.class));
+            }
+        });
+
+        mFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FirebaseTest.class));
+            }
+        });
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String user;
+
+                mFirebaseAuth = FirebaseAuth.getInstance();
+                user = mFirebaseAuth.getCurrentUser().toString();
+                Log.e("User: ", "" + user + " signing out...");
+                mFirebaseAuth.signOut();
+                Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT);
             }
         });
     }

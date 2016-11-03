@@ -26,6 +26,7 @@ public class BreathingActivity extends AppCompatActivity{
     @BindView(R.id.textViewSeeker) TextView mSeekerText;
     @BindView(R.id.buttonPause) Button mPauseButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,6 @@ public class BreathingActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                mAnimZoomInOut.setDuration(mSeekSpeedProgress);
                 mBreathingImage.startAnimation(mAnimZoomInOut);
 
             }
@@ -63,6 +63,7 @@ public class BreathingActivity extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
                 mSeekSpeedProgress = value + 3000;
                 mSeekerText.setText("" + (mSeekSpeedProgress/1000) + " seconds");
+                mAnimZoomInOut.setDuration(mSeekSpeedProgress);
             }
 
             @Override
