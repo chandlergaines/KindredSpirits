@@ -23,7 +23,7 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
         this.mContext = context;
         this.mLayoutInflater = LayoutInflater.from(context);
         this.mHotlineList = new ArrayList<>();
-    }
+    } //todo you changed this before, added the List param
 
     @Override
     public HotlineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,9 +41,9 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
         TextView mNumber = (TextView) mRecyclerView.findViewById(R.id.hotlineNumberTxt);
         Button mCallButton = (Button) mRecyclerView.findViewById(R.id.buttonCall);*/
 
-        holder.mTitle.setText(mHotline.getHotlineTitle());
-        holder.mDescription.setText(mHotline.getHotlineTitle());
-        holder.mNumber.setText(mHotline.getHotlineNumber());
+        holder.mTitle.setText(mHotline.getTitle());
+        holder.mDescription.setText(mHotline.getDescription());
+        holder.mNumber.setText(mHotline.getNumber());
     }
 
     @Override
@@ -127,9 +127,9 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
 
         Hotline item = mHotlineList.get(whichItem);
 
-        txtTitle.setText(item.getHotlineTitle());
-        txtDescription.setText(item.getHotlineDescription());
-        txtNumber.setText(item.getHotlineNumber());
+        txtTitle.setText(item.getTitle());
+        txtDescription.setText(item.getDescription());
+        txtNumber.setText(item.getNumber());
 
         return view;
     }*/ //David said I don't need this based on our movie app

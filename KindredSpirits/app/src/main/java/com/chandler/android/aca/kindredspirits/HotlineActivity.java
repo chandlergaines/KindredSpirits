@@ -19,16 +19,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class HotlineActivity extends AppCompatActivity {
 
-    List<Hotline> hotlineList = new ArrayList<Hotline>();
     private HotlineAdapter mHotlineAdapter;
+
+    List mHotlineList;
+
+    LinearLayoutManager mLayoutManager;
 
     DatabaseReference mDataRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mDataRootRef.child("hotlines");
@@ -36,43 +33,48 @@ public class HotlineActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     Hotline mHotline;
 
-    int hotlinePosition = 0;
-
     //todo build the thing
-
-    /*TextView mHotlineTitle;
-    TextView mHotlineDesc;
-    TextView mHotlineNumber;
-    Button mCallButton;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         setContentView(R.layout.activity_hotline);
 
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewHotline);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-       /* mHotlineTitle = (TextView) findViewById(R.id.hotlineTextTitle);
-        mHotlineDesc = (TextView) findViewById(R.id.hotlineTextDesc);
-        mHotlineNumber = (TextView) findViewById(R.id.hotlineNumberTxt);
-        mCallButton = (Button) findViewById(R.id.buttonCall);*/
 
-       // final ListView listHotline = (ListView) findViewById(R.id.listViewHotline);
+        mConditionRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mHotlineList = new ArrayList<>();
+                for (int i = 0; i < 11; i++) {
 
-        /*final ArrayAdapter <String> adapter = new ArrayAdapter<>
-                (this, R.layout.listitem_hotline, );*/
+                    mHotline = new Hotline();
+                    mHotline = dataSnapshot.child("" + (i + 1)).getValue(Hotline.class);
+                    mHotlineList.add(mHotline);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mHotlineAdapter = new HotlineAdapter(this);
-        mRecyclerView.setAdapter(mHotlineAdapter);
-        final List<Hotline> hotline = new ArrayList<>();
+                }
 
-        for (int i = 0; i < 20; i++) {
-            hotline.add(new Hotline());
-        }
-        mHotlineAdapter.setHotlineList(hotline);
+                mHotlineAdapter = new HotlineAdapter(HotlineActivity.this);
+                mRecyclerView.setAdapter(mHotlineAdapter);
+                // final List<Hotline> hotline = new ArrayList<>();
 
-        myRetrofit();
+                mHotlineAdapter.setHotlineList(mHotlineList);
+
+                   /* mHotline.setHotlineItem(hotlinePosition);
+                    List<String> details = new ArrayList<String>();*/
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         mRecyclerView.addOnItemTouchListener(new RecyclerOnClick(getApplicationContext(),
                 mRecyclerView, new RecyclerOnClick.OnItemClickListener() {
@@ -81,14 +83,14 @@ public class HotlineActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 int itemPosition = mRecyclerView.getChildLayoutPosition(view);
                 mHotlineAdapter.getHotlineList();
-                Hotline selected = hotline.get(itemPosition);
+                Hotline selected = (Hotline) mHotlineList.get(itemPosition);
 
-                final String mTitle = selected.getHotlineTitle();
-                final String mNumber = selected.getHotlineNumber();
-                final String mDescription = selected.getHotlineDescription();
+                final String mTitle = selected.getTitle();
+                final String mNumber = selected.getNumber();
+                final String mDescription = selected.getDescription();
 
                 Intent intent = new Intent(getApplicationContext(), HotlineDetail.class);
-                intent.putExtra("Hotline", mHotlineAdapter.getHotlineList().get(position));
+                intent.putExtra("hotlines", mHotlineAdapter.getHotlineList().get(position));
                 startActivity(intent);
 
                 // Get a fragment manager
@@ -99,7 +101,7 @@ public class HotlineActivity extends AppCompatActivity {
                 Fragment frag = fManager.findFragmentById(R.id.fragmentHolder);
 
                 // Check the fragment has not already been initialized
-                if(frag == null){
+                if (frag == null) {
 
                     // Initialize the fragment based on our SimpleFragment
                     frag = new HotlineDetail();
@@ -116,7 +118,92 @@ public class HotlineActivity extends AppCompatActivity {
             }
         }));
 
-        /*listHotline.setAdapter(mHotlineAdapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mConditionRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+               /* for(int i = 1; i<= 12; i++) {
+                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
+                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
+                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
+                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
+                    }
+                }*/
+                Log.v("E_VALUE", "Value is: " + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Failed to read value", "Life sux");
+            }
+        });
+
+    }
+
+
+
+  /*  public void myRetrofit() {
+        Retrofit restAdapter = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://kindred-spirits.firebaseio.com/")
+                .build();
+
+        HotlineApiService apiService = restAdapter.create(HotlineApiService.class);
+
+        Call<Hotline.HotlineResult> call = apiService.getHotlines();
+        call.enqueue(new Callback<Hotline.HotlineResult>() {
+            @Override
+            public void onResponse(Call<Hotline.HotlineResult> call, Response<Hotline.HotlineResult> response) {
+                mHotlineAdapter.setHotlineList(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(Call<Hotline.HotlineResult> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }*/
+}
+
+
+
+   /* public void getHotlines(final String title, final String desc, final String num) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dataRef = database.getReference("mHotlineList");
+        mHotline = new Hotline();
+
+        //todo without the child it will return a list or a hashmap
+
+        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List mHotlineList = new ArrayList<>();
+                for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
+                    Hotline hotline = hotlineSnapshot.getValue(Hotline.class);
+                    mHotlineList.add(hotline);
+                }
+
+                mHotline.setHotlineItem(hotlinePosition);
+                List<String> details = new ArrayList<String>();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }*/
+
+
+ /*listHotline.setAdapter(mHotlineAdapter);
         listHotline.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int whichITem, long id) {
@@ -146,88 +233,3 @@ public class HotlineActivity extends AppCompatActivity {
 
             }
         });*/
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mConditionRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(int i = 1; i<= 12; i++) {
-                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
-                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
-                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
-                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
-                    }
-                }
-                Log.e("Database pull result", "Value is: ");
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("Failed to read value", "Life sux");
-            }
-        });
-
-    }
-
-    public void getHotlines(final String title, final String desc, final String num){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataRef = database.getReference("hotlines");
-        mHotline = new Hotline();
-
-        //todo without the child it will return a list or a hashmap
-
-        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mHotline = null;
-                for(int i = 1; i<= 12; i++) {
-                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
-                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
-                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
-                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
-                    }
-                }
-                mHotline = dataSnapshot.getValue(Hotline.class);
-                hotlinePosition = mHotline.getHotlineItem();
-                hotlinePosition++;
-                mHotline.setHotlineItem(hotlinePosition);
-
-
-                mHotline.setHotlineItem(hotlinePosition);
-                List<String> details = new ArrayList<String>();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public void myRetrofit() {
-        Retrofit restAdapter = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://kindred-spirits.firebaseio.com/")
-                .build();
-
-        HotlineApiService apiService = restAdapter.create(HotlineApiService.class);
-
-        Call<Hotline.HotlineResult> call = apiService.getHotlines();
-        call.enqueue(new Callback<Hotline.HotlineResult>() {
-            @Override
-            public void onResponse(Call<Hotline.HotlineResult> call, Response<Hotline.HotlineResult> response) {
-                mHotlineAdapter.setHotlineList(response.body().getResults());
-            }
-
-            @Override
-            public void onFailure(Call<Hotline.HotlineResult> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
-}

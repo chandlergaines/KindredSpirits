@@ -39,7 +39,7 @@ public class FirebaseTest extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         // Get a reference to the todoItems child items it the database
-        final DatabaseReference myRef = database.getReference("hotlines");
+        final DatabaseReference myRef = database.getReference("mHotlineList");
 
         // Assign a listener to detect changes to the child items
         // of the database reference.
@@ -50,8 +50,8 @@ public class FirebaseTest extends AppCompatActivity {
             // each time a new child is added.
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-             //   String value = dataSnapshot.child("hotlines").child("1").child("title").getValue(String.class);
-             //   adapter.add(value);
+                String value = dataSnapshot.child("mHotlineList").getValue(String.class);
+                adapter.add(value);
             }
 
             // This function is called each time a child item is removed.

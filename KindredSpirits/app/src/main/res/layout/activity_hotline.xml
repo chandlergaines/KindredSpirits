@@ -25,10 +25,4 @@
         tools:context=".HotlineActivity"
         tools:showIn="@layout/activity_hotline"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragmentHolder"
-        android:layout_below="@+id/listViewHotline">
-    </FrameLayout>
 </RelativeLayout>

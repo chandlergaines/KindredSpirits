@@ -1,59 +1,42 @@
 package com.chandler.android.aca.kindredspirits;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 import java.util.List;
 
 public class Hotline implements Serializable{
 
-    @SerializedName("hotlines")
-    private int mHotlineItem;
+    private String mTitle;
 
-    @SerializedName("title")
-    private String mHotlineTitle;
+    private String mDescription;
 
-    @SerializedName("description")
-    private String mHotlineDescription;
-
-    @SerializedName("number")
-    private String mHotlineNumber;
+    private String mNumber;
 
     public Hotline(){
 
     }
 
-
-    public int getHotlineItem() {
-        return mHotlineItem;
+    public String getNumber() {
+        return mNumber;
     }
 
-    public void setHotlineItem(int hotlineItem) {
-        mHotlineItem = hotlineItem;
+    public void setNumber(String number) {
+        this.mNumber = number;
     }
 
-    public String getHotlineNumber() {
-        return mHotlineNumber;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setHotlineNumber(String hotlineNumber) {
-        this.mHotlineNumber = hotlineNumber;
+    public void setTitle(String title) {
+        this.mTitle = title;
     }
 
-    public String getHotlineTitle() {
-        return mHotlineTitle;
+    public String getDescription() {
+        return mDescription;
     }
 
-    public void setHotlineTitle(String hotlineTitle) {
-        this.mHotlineTitle = hotlineTitle;
-    }
-
-    public String getHotlineDescription() {
-        return mHotlineDescription;
-    }
-
-    public void setHotlineDescription(String hotlineDescription) {
-        this.mHotlineDescription = hotlineDescription;
+    public void setDescription(String description) {
+        this.mDescription = description;
     }
 
     public static class HotlineResult{
