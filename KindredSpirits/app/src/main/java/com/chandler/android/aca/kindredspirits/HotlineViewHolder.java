@@ -22,7 +22,7 @@ public class HotlineViewHolder extends RecyclerView.ViewHolder {
 
         mNumber = (TextView) itemView.findViewById(R.id.hotlineNumberTxt);
 
-        mCallButton = (Button) itemView.findViewById(R.id.buttonCall);
+        mCallButton = (Button) itemView.findViewById(R.id.fragButton);
 
     }
 

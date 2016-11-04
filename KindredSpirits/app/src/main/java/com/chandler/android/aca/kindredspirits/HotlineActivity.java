@@ -22,18 +22,14 @@ import java.util.List;
 public class HotlineActivity extends AppCompatActivity {
 
     private HotlineAdapter mHotlineAdapter;
-
     List mHotlineList;
+    Hotline mHotline;
 
     LinearLayoutManager mLayoutManager;
+    RecyclerView mRecyclerView;
 
     DatabaseReference mDataRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mDataRootRef.child("hotlines");
-
-    RecyclerView mRecyclerView;
-    Hotline mHotline;
-
-    //todo build the thing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +57,6 @@ public class HotlineActivity extends AppCompatActivity {
 
                 mHotlineAdapter = new HotlineAdapter(HotlineActivity.this);
                 mRecyclerView.setAdapter(mHotlineAdapter);
-                // final List<Hotline> hotline = new ArrayList<>();
-
                 mHotlineAdapter.setHotlineList(mHotlineList);
 
                    /* mHotline.setHotlineItem(hotlinePosition);
@@ -89,9 +83,9 @@ public class HotlineActivity extends AppCompatActivity {
                 final String mNumber = selected.getNumber();
                 final String mDescription = selected.getDescription();
 
-                Intent intent = new Intent(getApplicationContext(), HotlineDetail.class);
+                Intent intent = new Intent(getApplicationContext(), HotlineDetailFragment.class);
                 intent.putExtra("hotlines", mHotlineAdapter.getHotlineList().get(position));
-                startActivity(intent);
+                Log.v("Bundle", " " + intent);
 
                 // Get a fragment manager
                 FragmentManager fManager = getFragmentManager();
@@ -104,7 +98,7 @@ public class HotlineActivity extends AppCompatActivity {
                 if (frag == null) {
 
                     // Initialize the fragment based on our SimpleFragment
-                    frag = new HotlineDetail();
+                    frag = new HotlineDetailFragment();
                     fManager.beginTransaction()
                             .add(R.id.fragmentHolder, frag)
                             .commit();
@@ -129,107 +123,14 @@ public class HotlineActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-               /* for(int i = 1; i<= 12; i++) {
-                    for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
-                        String title = (String) hotlineSnapshot.child(""+i).child("title").getValue();
-                        String number = (String) hotlineSnapshot.child(""+i).child("number").getValue();
-                        String description = (String) hotlineSnapshot.child(""+i).child("description").getValue();
-                    }
-                }*/
-                Log.v("E_VALUE", "Value is: " + dataSnapshot.getValue());
+                Log.v("DataSnapshot ", "Value is: " + dataSnapshot.getValue());
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("Failed to read value", "Life sux");
+                Log.e("Failed to read value ", "Life sux");
             }
         });
 
     }
-
-
-
-  /*  public void myRetrofit() {
-        Retrofit restAdapter = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://kindred-spirits.firebaseio.com/")
-                .build();
-
-        HotlineApiService apiService = restAdapter.create(HotlineApiService.class);
-
-        Call<Hotline.HotlineResult> call = apiService.getHotlines();
-        call.enqueue(new Callback<Hotline.HotlineResult>() {
-            @Override
-            public void onResponse(Call<Hotline.HotlineResult> call, Response<Hotline.HotlineResult> response) {
-                mHotlineAdapter.setHotlineList(response.body().getResults());
-            }
-
-            @Override
-            public void onFailure(Call<Hotline.HotlineResult> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }*/
 }
-
-
-
-   /* public void getHotlines(final String title, final String desc, final String num) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataRef = database.getReference("mHotlineList");
-        mHotline = new Hotline();
-
-        //todo without the child it will return a list or a hashmap
-
-        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List mHotlineList = new ArrayList<>();
-                for (DataSnapshot hotlineSnapshot : dataSnapshot.getChildren()) {
-                    Hotline hotline = hotlineSnapshot.getValue(Hotline.class);
-                    mHotlineList.add(hotline);
-                }
-
-                mHotline.setHotlineItem(hotlinePosition);
-                List<String> details = new ArrayList<String>();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }*/
-
-
- /*listHotline.setAdapter(mHotlineAdapter);
-        listHotline.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int whichITem, long id) {
-
-                Hotline item = mHotlineAdapter.getItem(whichITem);
-
-                // Create a new dialog window
-                HotlineViewHolder dialog = new HotlineViewHolder();
-
-                // Send in a reference to the hotline to be shown
-                dialog.sendHotlineSelected(item);
-
-                // Show the dialog window with the hotline in it
-                dialog.show(getFragmentManager(), "");
-            }
-        });*/
-
-        /*mDataRootRef.child("hotline").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // hotlineList.add();
-                // todo set this up so it updates data
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
