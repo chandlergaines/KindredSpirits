@@ -31,11 +31,28 @@
         android:textSize="18sp"
         android:textAlignment="center"/>
 
-    <Button
-        android:text="Call"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fragButton"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:text="Call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragButton"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dismiss"
+            android:id="@+id/fragDismiss"
+            android:layout_toRightOf="@id/fragButton"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+
 </LinearLayout>

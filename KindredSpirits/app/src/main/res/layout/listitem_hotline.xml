@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:id="@+id/hotlineListLayout">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hotlineTextTitle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="20sp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hotlineNumberTxt"
-        android:text="555-0123"/>
+        <TextView
+            android:id="@+id/hotlineTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hotlineTextDesc"
-        android:ellipsize="end"
-        android:maxLines="1"/>
+        <TextView
+            android:id="@+id/hotlineNumberTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hotlineTextTitle"
+            android:text="555-0123"/>
+
+        <TextView
+            android:id="@+id/hotlineTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hotlineNumberTxt"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="TextView"/>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                     android:id="@+id/fragmentHolder"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/hotlineTextDesc"
+                     android:orientation="vertical">
+        </FrameLayout>
+    </RelativeLayout>
 </LinearLayout>

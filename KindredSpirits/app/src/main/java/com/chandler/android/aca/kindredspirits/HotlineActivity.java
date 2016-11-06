@@ -2,7 +2,6 @@ package com.chandler.android.aca.kindredspirits;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,22 +82,25 @@ public class HotlineActivity extends AppCompatActivity {
                 final String mNumber = selected.getNumber();
                 final String mDescription = selected.getDescription();
 
-                Intent intent = new Intent(getApplicationContext(), HotlineDetailFragment.class);
-                intent.putExtra("hotlines", mHotlineAdapter.getHotlineList().get(position));
-                Log.v("Bundle", " " + intent);
+                Bundle hotlineBundle = new Bundle();
+                hotlineBundle.putString("title", mTitle);
+                hotlineBundle.putString("number", mNumber);
+                hotlineBundle.putString("description", mDescription);
 
                 // Get a fragment manager
                 FragmentManager fManager = getFragmentManager();
 
                 // Create a new fragment using the manager
                 // Passing in the id of the layout to hold it
-                Fragment frag = fManager.findFragmentById(R.id.fragmentHolder);
+                Fragment frag = new Fragment();
+                frag = fManager.findFragmentById(R.id.fragmentHolder);
 
                 // Check the fragment has not already been initialized
                 if (frag == null) {
 
                     // Initialize the fragment based on our SimpleFragment
                     frag = new HotlineDetailFragment();
+                    frag.setArguments(hotlineBundle);
                     fManager.beginTransaction()
                             .add(R.id.fragmentHolder, frag)
                             .commit();

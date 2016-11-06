@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="435dp"
+        android:layout_below="@+id/imageBreathing"
         android:max="7000"
         android:indeterminate="false"
         android:id="@+id/seekBar"/>
@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:text="pause"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="525dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:id="@+id/buttonPause"/>
 
     <ImageButton
@@ -60,7 +61,6 @@
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:srcCompat="@drawable/dotted_circle"
-        android:layout_marginTop="19dp"
         android:id="@+id/imageBreathing"
         android:background="@null"
         android:tint="@color/colorPrimaryDark"

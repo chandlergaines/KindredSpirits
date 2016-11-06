@@ -156,7 +156,7 @@ public class NoteDialogNew extends DialogFragment{
     public void onDestroy() {
         super.onDestroy();
 
-        if (mImageUri != null){
+        if (mImageUri != null) {
             // Make sure we don't run out of memory
             BitmapDrawable bd = (BitmapDrawable) mImageView.getDrawable();
             bd.getBitmap().recycle();

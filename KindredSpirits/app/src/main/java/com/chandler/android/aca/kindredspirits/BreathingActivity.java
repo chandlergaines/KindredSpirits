@@ -18,7 +18,7 @@ public class BreathingActivity extends AppCompatActivity{
 
     Animation mAnimZoomInOut;
    // Animation mAnimZoomOut;
-    int mSeekSpeedProgress;
+    int mSeekSpeedProgress = 3000;
     int repeat;
 
     @BindView(R.id.imageViewBreathing) ImageButton mBreathingImage;
@@ -37,6 +37,7 @@ public class BreathingActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                mAnimZoomInOut.setDuration(mSeekSpeedProgress);
                 mBreathingImage.startAnimation(mAnimZoomInOut);
 
             }
@@ -51,7 +52,6 @@ public class BreathingActivity extends AppCompatActivity{
             }
         });
 
-        mSeekSpeedProgress = 3000;
 
         mSeekerText.setText("Change the pace using the seekbar");
         loadAnimations();
