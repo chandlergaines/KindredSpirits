@@ -86,12 +86,6 @@ public class KindBook {
             "I am important.",
     };
 
-    Object[] mArrays = {
-        mReality,
-        mKnope,
-        mKindness,
-        mAffirmations
-    };
 
     public String getKindness(){
         String kindness;

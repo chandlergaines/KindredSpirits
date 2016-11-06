@@ -41,14 +41,14 @@
         android:id="@+id/buttonHotlineActivity"/>
 
     <Button
-    android:text="Login"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/buttonHotlineActivity"
-    android:layout_alignLeft="@+id/buttonNoteActivity"
-    android:layout_alignStart="@+id/buttonNoteActivity"
-    android:layout_marginTop="15dp"
-    android:id="@+id/buttonLoginActivity"/>
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonHotlineActivity"
+        android:layout_alignLeft="@+id/buttonNoteActivity"
+        android:layout_alignStart="@+id/buttonNoteActivity"
+        android:layout_marginTop="15dp"
+        android:id="@+id/buttonLoginActivity"/>
 
     <Button
         android:text="Register"
@@ -69,6 +69,16 @@
         android:layout_alignStart="@+id/buttonRegistrationActivity"
         android:layout_marginTop="15dp"
         android:id="@+id/buttonBreathingActivity"/>
+
+    <Button
+        android:text="Safe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBreathingActivity"
+        android:layout_alignLeft="@+id/buttonBreathingActivity"
+        android:layout_alignStart="@+id/buttonBreathingActivity"
+        android:layout_marginTop="15dp"
+        android:id="@+id/buttonSafe"/>
 
     <Button
         android:text="Firebase"
@@ -96,5 +106,7 @@
         android:layout_alignParentBottom="true"
         android:paddingBottom="50dp"
         android:id="@+id/userTextView"/>
+
+
 
 </RelativeLayout>

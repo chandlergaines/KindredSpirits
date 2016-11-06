@@ -1,10 +1,5 @@
 package com.chandler.android.aca.kindredspirits;
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,21 +12,26 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class KindWordsActivity extends AppCompatActivity implements SensorEventListener{
+public class KindWordsActivity extends AppCompatActivity {
+
+    //TODO Work out the logic of how to add and remove arrays based on the checks
 
     private KindBook mKindBook = new KindBook();
     String kindness;
-    String[] array;
+    String[] chosen;
 
-    private final static float ACC = 15; //todo keep this or no?
-    SensorManager mSensorManager;
-
-    @BindView(R.id.kindText) TextView mKindnessTextView;
-    @BindView(R.id.kindBtn) Button mKindButton;
-    @BindView(R.id.kindCheck) CheckBox mKindCheck;
-    @BindView(R.id.knopeCheck) CheckBox mKnopeCheck;
-    @BindView(R.id.affirmationCheck) CheckBox mAffirmationCheck;
-    @BindView(R.id.realityCheck) CheckBox mRealityCheck;
+    @BindView(R.id.kindText)
+    TextView mKindnessTextView;
+    @BindView(R.id.kindBtn)
+    Button mKindButton;
+    @BindView(R.id.kindCheck)
+    CheckBox mKindCheck;
+    @BindView(R.id.knopeCheck)
+    CheckBox mKnopeCheck;
+    @BindView(R.id.affirmationCheck)
+    CheckBox mAffirmationCheck;
+    @BindView(R.id.realityCheck)
+    CheckBox mRealityCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,44 +46,101 @@ public class KindWordsActivity extends AppCompatActivity implements SensorEventL
 
                 if (mKindCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mKindness);
-                } else {
+                }
+                if (!mKindCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mKindness);
                 }
 
                 if (mKnopeCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mKnope);
-                } else {
+                }
+                if (!mKnopeCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mKnope);
                 }
 
                 if (mAffirmationCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mAffirmations);
-                } else {
+                }
+                if (!mAffirmationCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mAffirmations);
                 }
 
                 if (mRealityCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mReality);
-                } else {
+                }
+                if (!mRealityCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mReality);
                 }
 
-                array = mKindBook.getArrays();
-                Random randomGenerator = new Random();
-                kindness = "Please select a category.";
-                int randomNumber = randomGenerator.nextInt(array.length);
-                kindness = array[randomNumber];
+                if (mKindBook.mArrayList.size() != 0) {
+                    chosen = getArrays();
+                    kindness = getKindness();
+                } else {
+                    kindness = "Please select a category.";
+                }
 
                 mKindnessTextView.setText(kindness);
                 mKindButton.setText("ANOTHER!");
             }
         });
 
+    }
+
+    public String[] getArrays() {
+        Random randomGenerator = new Random();
+        int randomNumber = randomGenerator.nextInt(mKindBook.mArrayList.size());
+        chosen = mKindBook.mArrayList.get(randomNumber);
+
+        return chosen;
+    }
+
+    public String getKindness() {
+        String kindness;
+        Random randomGenerator = new Random();
+        int randomNumber = randomGenerator.nextInt(chosen.length);
+        kindness = chosen[randomNumber];
+
+        return kindness;
+    }
+
+
+    public void onCheckboxClicked(View view) {
+        //Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+        if (checked) {
+
+        }
+    }
+}
+
+//Stuff I may use later for reference or for sensor managing
+
+
+/*    private final static float ACC = 15; //todo keep this or no?
+    SensorManager mSensorManager;
+
+
+    public String[] beRandom(){
+        array = mKindBook.getArrays();
+        Random randomGenerator = new Random();
+        int randomNumber = randomGenerator.nextInt(array.length);
+        array = mKindBook.mArrayList[randomNumber];
+
+        return array;
+    }
+
+
+
+
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorManager.registerListener(this,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
-    }
+
+
+
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -99,14 +156,6 @@ public class KindWordsActivity extends AppCompatActivity implements SensorEventL
             }
         }
 
-    }
-
-    public void onCheckboxClicked(View view) {
-        //Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-        if (checked) {
-
-        }
     }
 
     @Override
@@ -130,5 +179,5 @@ public class KindWordsActivity extends AppCompatActivity implements SensorEventL
     protected void onResume() {
         super.onResume();
         mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-    }
-}
+    }*/
+

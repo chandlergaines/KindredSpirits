@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_safe_circle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.chandler.android.aca.kindredspirits.SafeCircle">
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imageBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@drawable/wallpaper"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/callEmergency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Call 911"/>
+
+        <Button
+            android:id="@+id/btnResources"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/callEmergency"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="9dp"
+            android:text="Get help now"/>
+
+        <Button
+            android:id="@+id/btnSendAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnResources"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="57dp"
+
+            android:text="Send to all"/>
+
+        <Button
+            android:id="@+id/contact3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSendAll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="72dp"
+            android:text="John Doe"/>
+
+        <Button
+            android:id="@+id/contact2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/contact3"
+            android:layout_alignEnd="@+id/contact3"
+            android:layout_alignRight="@+id/contact3"
+            android:layout_marginBottom="22dp"
+            android:layout_marginEnd="69dp"
+            android:layout_marginRight="69dp"
+            android:text="John Doe"/>
+
+        <Button
+            android:id="@+id/contact1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/contact2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="13dp"
+            android:text="John Doe"/>
+
+        <Button
+            android:id="@+id/contact5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/contact1"
+            android:layout_alignBottom="@+id/contact1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="John Doe"/>
+
+        <Button
+            android:id="@+id/contact4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/contact2"
+            android:layout_alignBottom="@+id/contact2"
+            android:layout_alignLeft="@+id/contact3"
+            android:layout_alignStart="@+id/contact3"
+            android:layout_marginLeft="65dp"
+            android:layout_marginStart="65dp"
+            android:text="John Doe"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/contact1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:text="Default message"/>
+
+    </RelativeLayout>
+</FrameLayout>

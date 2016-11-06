@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.buttonLoginActivity) Button mLoginActivity;
     @BindView(R.id.buttonRegistrationActivity) Button mRegistrationActivity;
     @BindView(R.id.buttonBreathingActivity) Button mBreathingActivity;
+    @BindView(R.id.buttonSafe) Button mSafeActivity;
     @BindView(R.id.button3) Button mFirebase;
     @BindView(R.id.button5) Button mLogout;
     @BindView(R.id.userTextView) TextView mUser;
@@ -78,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BreathingActivity.class));
+            }
+        });
+
+        mSafeActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SafeCircle.class));
             }
         });
 
