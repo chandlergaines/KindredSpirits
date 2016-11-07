@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +34,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FirebaseUser mFirebaseUser;
+
+    String mActualUser;
 
     private ProgressDialog progressDialog;
 
@@ -43,19 +48,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.email_sign_in_button) Button mEmailSignInButton;
     @BindView(R.id.register) TextView mRegister;
 
+    @BindView(R.id.imageBackground)
+    ImageView mBackground;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
 
-        //getting firebase auth object
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null) {
+                    Log.v("FirebaseAuth", " user: " + user);
+                    mActualUser = user.getUid();
+                } else { Log.v("FirebaseAuth", " not logged in");}
+            }
+        };
+
+
 
         //if the objects getcurrentuser method is not null
         //means user is already logged in
-        if(mFirebaseAuth.getCurrentUser() != null){
+        if(mActualUser != null){
             //close this activity
             finish();
             //opening profile activity
@@ -68,15 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mEmailSignInButton.setOnClickListener(this);
         mRegister.setOnClickListener(this);
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null) {
-                    Log.v("FirebaseAuth", " user: " + user);
-                } else { Log.v("FirebaseAuth", " not logged in");}
-            }
-        };
+
     }
 
     @Override

@@ -5,7 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 
@@ -33,41 +37,51 @@ public class KindWordsActivity extends AppCompatActivity {
     @BindView(R.id.realityCheck)
     CheckBox mRealityCheck;
 
+    @BindView(R.id.imageBackground)
+    ImageView mBackground;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kind_words);
 
         ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+        mKindBook.mArrayList.add(mKindBook.mKindness);
+        mKindBook.mArrayList.add(mKindBook.mKnope);
+        mKindBook.mArrayList.add(mKindBook.mAffirmations);
+        mKindBook.mArrayList.add(mKindBook.mReality);
 
         mKindButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (mKindCheck.isChecked()) {
+                /*if (mKindCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mKindness);
-                }
+                }*/
                 if (!mKindCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mKindness);
                 }
 
-                if (mKnopeCheck.isChecked()) {
+                /*if (mKnopeCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mKnope);
-                }
+                }*/
                 if (!mKnopeCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mKnope);
                 }
 
-                if (mAffirmationCheck.isChecked()) {
+                /*if (mAffirmationCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mAffirmations);
-                }
+                }*/
                 if (!mAffirmationCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mAffirmations);
                 }
 
-                if (mRealityCheck.isChecked()) {
+                /*if (mRealityCheck.isChecked()) {
                     mKindBook.mArrayList.add(mKindBook.mReality);
-                }
+                }*/
                 if (!mRealityCheck.isChecked()) {
                     mKindBook.mArrayList.remove(mKindBook.mReality);
                 }
@@ -81,6 +95,32 @@ public class KindWordsActivity extends AppCompatActivity {
 
                 mKindnessTextView.setText(kindness);
                 mKindButton.setText("ANOTHER!");
+            }
+
+        });
+
+        mKindCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mKindBook.mArrayList.add(mKindBook.mKindness);
+            }
+        });
+        mKnopeCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mKindBook.mArrayList.add(mKindBook.mKnope);
+            }
+        });
+        mAffirmationCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mKindBook.mArrayList.add(mKindBook.mAffirmations);
+            }
+        });
+        mRealityCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mKindBook.mArrayList.add(mKindBook.mReality);
             }
         });
 
@@ -111,6 +151,7 @@ public class KindWordsActivity extends AppCompatActivity {
 
         }
     }
+
 }
 
 //Stuff I may use later for reference or for sensor managing

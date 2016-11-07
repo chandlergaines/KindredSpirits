@@ -25,9 +25,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -43,10 +48,16 @@ public class NoteActivity extends AppCompatActivity {
     private int mBackground;
     private SharedPreferences mPrefs;
 
+    @BindView(R.id.imageBackground) ImageView mImageBackground;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
+
+        ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mImageBackground);
+
 
         // Instantiate our sound pool
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -1,58 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_breathing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chandler.android.aca.kindredspirits.BreathingActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragTitle"
-        android:hint="title"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"
-        android:textAlignment="center"/>
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:alpha=".3"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragNumber"
-        android:hint="555-0123"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textAlignment="center"/>
+    <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragDesc"
-        android:hint="stuff and things"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textAlignment="center"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <Button
-            android:text="Call"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/fragTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fragButton"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
+            android:hint="title"
+            android:textAlignment="center"
+            android:textSize="25sp"/>
 
-        <Button
+        <TextView
+            android:id="@+id/fragNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="555-0123"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/fragDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="stuff and things"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dismiss"
-            android:id="@+id/fragDismiss"
-            android:layout_toRightOf="@id/fragButton"
-            android:layout_marginTop="10dp"/>
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp">
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/fragButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Call"/>
+
+            <Button
+                android:id="@+id/fragDismiss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/fragButton"
+                android:text="Dismiss"/>
+
+        </RelativeLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

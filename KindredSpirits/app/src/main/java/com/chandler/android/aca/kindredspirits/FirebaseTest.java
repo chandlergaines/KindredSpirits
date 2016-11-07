@@ -20,10 +20,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirebaseTest extends AppCompatActivity {
 
+    //@BindView(R.id.imageBackground) ImageView mBackground;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_test);
+
+       // ButterKnife.bind(this);
+       // Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
 
         // Get ListView object from xml
         final ListView listView = (ListView) findViewById(R.id.listView);

@@ -7,8 +7,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +28,7 @@ public class BreathingActivity extends AppCompatActivity{
     @BindView(R.id.seekBar) SeekBar mSeekBar;
     @BindView(R.id.textViewSeeker) TextView mSeekerText;
     @BindView(R.id.buttonPause) Button mPauseButton;
+    @BindView(R.id.imageBackground) ImageView mBackground;
 
 
     @Override
@@ -32,7 +36,11 @@ public class BreathingActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breathing);
 
+
         ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+
         mBreathingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

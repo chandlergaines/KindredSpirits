@@ -8,15 +8,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HotlineActivity extends AppCompatActivity {
 
@@ -30,11 +35,19 @@ public class HotlineActivity extends AppCompatActivity {
     DatabaseReference mDataRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mDataRootRef.child("hotlines");
 
+    @BindView(R.id.imageBackground)
+    ImageView mBackground;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         setContentView(R.layout.activity_hotline);
+
+        ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+        // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
 
         mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

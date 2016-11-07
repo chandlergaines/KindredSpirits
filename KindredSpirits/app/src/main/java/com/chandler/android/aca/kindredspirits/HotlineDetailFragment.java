@@ -75,7 +75,7 @@ public class HotlineDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                getActivity().getFragmentManager().popBackStack();
+                getActivity().getFragmentManager().beginTransaction().remove(HotlineDetailFragment.this).commit();
             }
         });
 

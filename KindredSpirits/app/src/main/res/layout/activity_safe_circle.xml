@@ -12,8 +12,7 @@
         android:id="@+id/imageBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
-        android:background="@drawable/wallpaper"/>
+        android:alpha="0.5"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

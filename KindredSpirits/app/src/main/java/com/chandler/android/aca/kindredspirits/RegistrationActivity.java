@@ -8,12 +8,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +37,9 @@ public class RegistrationActivity extends AppCompatActivity {
     @BindView(R.id.buttonSignup)
     Button mRegister;
 
+    @BindView(R.id.imageBackground)
+    ImageView mBackground;
+
     private FirebaseAuth mFirebaseAuth;
 
     private ProgressDialog mProgressDialog;
@@ -45,6 +50,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         ButterKnife.bind(this);
+
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
