@@ -7,6 +7,7 @@
     <uses-feature android:name="android.hardware.camera2"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
@@ -61,6 +62,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -88,7 +90,7 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <!--             Defining Services -->
+        <!-- Defining Services -->
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

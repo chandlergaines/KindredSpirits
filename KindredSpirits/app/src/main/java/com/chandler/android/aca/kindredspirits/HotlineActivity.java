@@ -2,6 +2,7 @@ package com.chandler.android.aca.kindredspirits;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class HotlineActivity extends AppCompatActivity {
     @BindView(R.id.imageBackground)
     ImageView mBackground;
 
+    ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class HotlineActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
 
-        // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        // FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -54,10 +57,14 @@ public class HotlineActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewHotline);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
 
         mConditionRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 mHotlineList = new ArrayList<>();
                 for (int i = 0; i < 11; i++) {
 
@@ -71,6 +78,8 @@ public class HotlineActivity extends AppCompatActivity {
                 mRecyclerView.setAdapter(mHotlineAdapter);
                 mHotlineAdapter.setHotlineList(mHotlineList);
 
+
+
                    /* mHotline.setHotlineItem(hotlinePosition);
                     List<String> details = new ArrayList<String>();*/
             }
@@ -79,7 +88,11 @@ public class HotlineActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
+
         });
+
+        mProgressDialog.dismiss();
 
 
         mRecyclerView.addOnItemTouchListener(new RecyclerOnClick(getApplicationContext(),

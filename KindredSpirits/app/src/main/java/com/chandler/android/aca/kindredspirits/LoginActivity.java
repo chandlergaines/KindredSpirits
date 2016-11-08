@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,7 +37,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     FirebaseUser mFirebaseUser;
-
     String mActualUser;
 
     private ProgressDialog progressDialog;
@@ -51,6 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.imageBackground)
     ImageView mBackground;
 
+    EventBus mBus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if (mFirebaseAuth.getCurrentUser() != null) {
+            //Go to main menu
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+
+        progressDialog = new ProgressDialog(this);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -73,24 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
-
-
-        //if the objects getcurrentuser method is not null
-        //means user is already logged in
-        if(mActualUser != null){
-            //close this activity
-            finish();
-            //opening profile activity
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
-
-        progressDialog = new ProgressDialog(this);
-
         //attaching click listener
         mEmailSignInButton.setOnClickListener(this);
         mRegister.setOnClickListener(this);
 
-
+        mActualUser = mFirebaseUser.toString();
+       // mBus.postSticky(new LoginEvent(mUserName.getText().toString()));
     }
 
     @Override
@@ -140,13 +139,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
+                            Log.v("Login Results", "Login Successful, " + mActualUser);
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {Toast.makeText(getApplicationContext(), "Login failed. Please try again", Toast.LENGTH_LONG).show();}
                     }
                 });
 
     }
+
+/*    @Override
+    protected void onStart() {
+        super.onStart();
+        mBus.register(this); //registering the event bus
+    }
+
+    @Override
+    public void onStop() {
+        mBus.unregister(this); //unregister the event bus
+        super.onStop(); //nothing will be completed after this line is executed
+    }
+
+    @Override
+    protected void onDestroy() {
+        mBus.unregister(this);
+        super.onDestroy();
+    }*/
 }
 
+/*mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null) {
+                    Log.v("FirebaseAuth", " user: " + user);
+                    mActualUser = user.getUid();
+                } else { Log.v("FirebaseAuth", " not logged in");}
+            }
+        };*/
 
 
