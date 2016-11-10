@@ -48,7 +48,7 @@ public class NoteSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_settings);
+        setContentView(R.layout.note_settings_activity);
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);

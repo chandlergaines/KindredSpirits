@@ -44,7 +44,7 @@ public class KindWordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kind_words);
+        setContentView(R.layout.kind_words_activity);
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);

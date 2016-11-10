@@ -41,7 +41,7 @@ public class SafeCircle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_safe_circle);
+        setContentView(R.layout.safe_circle_activity);
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
@@ -60,6 +60,16 @@ public class SafeCircle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SafeCircle.this, HotlineActivity.class));
+            }
+        });
+
+        mContact1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction();
+                       // .replace(R.layout.safe_circle_list, new SafeCircleFragment(),
+                       //         "SAFE_CIRCLE").commit();
+               // fragmentTransaction.add(R.id.FragmentContainer, fragment);
             }
         });
 

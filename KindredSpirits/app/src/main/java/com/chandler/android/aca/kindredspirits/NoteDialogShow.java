@@ -27,7 +27,7 @@ public class NoteDialogShow extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_note_show, null);
+        View dialogView = inflater.inflate(R.layout.note_show_dialog, null);
 
         TextView txtTitle = (TextView) dialogView.findViewById(R.id.txtTitle);
 
@@ -71,7 +71,7 @@ public class NoteDialogShow extends DialogFragment {
 
         Button btnOK = (Button) dialogView.findViewById(R.id.btnOK);
 
-        builder.setView(dialogView).setTitle("Your Note");
+        builder.setView(dialogView);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override

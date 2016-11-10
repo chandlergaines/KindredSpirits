@@ -8,6 +8,6 @@ public class UpdatesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_updates);
+        setContentView(R.layout.updates_activity);
     }
 }

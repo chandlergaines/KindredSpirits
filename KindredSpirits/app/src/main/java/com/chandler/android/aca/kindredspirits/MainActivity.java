@@ -133,34 +133,34 @@ public class MainActivity extends AppCompatActivity {
                 .withIdentifier(1)
                 .withName("Home")
                 .withIcon(GoogleMaterial.Icon.gmd_account_balance)
-                .withTextColorRes(R.color.accent);
+                .withTextColorRes(R.color.md_white_1000);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem()
                 .withIdentifier(2)
                 .withName("Artist")
                 .withIcon(GoogleMaterial.Icon.gmd_perm_identity)
-                .withTextColorRes(R.color.accent);
+                .withTextColorRes(R.color.md_white_1000);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem()
                 .withIdentifier(3)
                 .withName("Artwork")
                 .withIcon(GoogleMaterial.Icon.gmd_brush)
-                .withTextColorRes(R.color.accent);
+                .withTextColorRes(R.color.md_white_1000);
         //can add others later
         SecondaryDrawerItem item7 = new SecondaryDrawerItem()
                 .withIdentifier(7)
                 .withName("Favorites")
                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
-                .withTextColorRes(R.color.accent);
+                .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item8 = new SecondaryDrawerItem()
                 .withIdentifier(8)
                 .withName("About")
                 .withIcon(GoogleMaterial.Icon.gmd_help)
-                .withTextColorRes(R.color.accent);
+                .withTextColorRes(R.color.md_white_1000);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
-                .withSliderBackgroundColor(getResources().getColor(R.color.primary))
+                .withSliderBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                 .withSelectedItem(-1)
                 .addDrawerItems(
                         item1,

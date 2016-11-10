@@ -49,7 +49,7 @@ public class NoteDialogNew extends DialogFragment{
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_note_new, null);
+        View dialogView = inflater.inflate(R.layout.note_new_dialog, null);
 
         //binding the things
         final EditText editTitle = (EditText) dialogView.findViewById(R.id.editTitle);
@@ -63,7 +63,7 @@ public class NoteDialogNew extends DialogFragment{
         mAddPhoto = (Button) dialogView.findViewById(R.id.btnAddPhoto);
         mImageView = (ImageView) dialogView.findViewById(R.id.photoImageView);
 
-        builder.setView(dialogView).setMessage("Add a new note");
+        builder.setView(dialogView);
 
         // Handle the cancel button
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +156,7 @@ public class NoteDialogNew extends DialogFragment{
     public void onDestroy() {
         super.onDestroy();
 
-        if (mImageUri != null) {
+        if (mImageUri != Uri.EMPTY) {
             // Make sure we don't run out of memory
             BitmapDrawable bd = (BitmapDrawable) mImageView.getDrawable();
             bd.getBitmap().recycle();

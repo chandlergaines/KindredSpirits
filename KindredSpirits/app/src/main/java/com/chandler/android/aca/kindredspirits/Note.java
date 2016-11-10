@@ -37,7 +37,8 @@ public class Note {
         mIdea = jo.getBoolean(JSON_IDEA);
         mTodo = jo.getBoolean(JSON_TODO);
         mImportant = jo.getBoolean(JSON_IMPORTANT);
-        mImageUri = Uri.parse(jo.getString(JSON_IMAGE));
+        //mImageUri = Uri.parse(jo.getString(JSON_IMAGE));
+        if (mImageUri != null) {Uri.parse(jo.getString(JSON_IMAGE));}
         //todo fix the no photo crash
     }
     // Now we must provide an empty default constructor
@@ -119,8 +120,8 @@ public class Note {
         jo.put(JSON_IDEA, mIdea);
         jo.put(JSON_TODO, mTodo);
         jo.put(JSON_IMPORTANT, mImportant);
-        jo.put(JSON_IMAGE, mImageUri.toString());
-        //if (mImageUri != null) {jo.put(JSON_IMAGE, mImageUri);}
+        //jo.put(JSON_IMAGE, mImageUri.toString());
+        if (mImageUri != null) {jo.put(JSON_IMAGE, mImageUri);}
 
         return jo;
     }

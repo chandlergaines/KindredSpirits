@@ -27,7 +27,7 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
 
     @Override
     public HotlineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.listitem_hotline, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.hotline_listitem, parent, false);
         HotlineViewHolder viewHolder = new HotlineViewHolder(view);
         return viewHolder;
     }
@@ -116,7 +116,7 @@ public class HotlineAdapter extends RecyclerView.Adapter<HotlineViewHolder>{
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             // Now instantiate view using inflater.inflate
             // using the listitem layout
-            view = inflater.inflate(R.layout.listitem_hotline, viewGroup, false);
+            view = inflater.inflate(R.layout.hotline_listitem, viewGroup, false);
             // The false parameter is necessary
             // because of the way we want to use listitem
         } // End if

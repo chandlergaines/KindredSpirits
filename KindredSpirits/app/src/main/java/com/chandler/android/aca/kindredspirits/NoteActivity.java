@@ -53,7 +53,7 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note);
+        setContentView(R.layout.note_activity);
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mImageBackground);
@@ -253,7 +253,7 @@ public class NoteActivity extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 // Now instantiate view using inflater.inflate
                 // using the listitem layout
-                view = inflater.inflate(R.layout.listitem_note, viewGroup, false);
+                view = inflater.inflate(R.layout.note_listitem, viewGroup, false);
                 // The false parameter is necessary
                 // because of the way we want to use listitem
             } // End if
