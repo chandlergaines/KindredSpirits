@@ -70,7 +70,7 @@ public class SafeCircleFragment extends Fragment
     //A UI Fragment must inflate its view
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.safe_circle_fragment, container, false);
+        mView = inflater.inflate(R.layout.safe_circle_list, container, false);
 
         return mView;
     }

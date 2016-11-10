@@ -66,10 +66,11 @@ public class SafeCircle extends AppCompatActivity {
         mContact1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction();
-                       // .replace(R.layout.safe_circle_list, new SafeCircleFragment(),
-                       //         "SAFE_CIRCLE").commit();
-               // fragmentTransaction.add(R.id.FragmentContainer, fragment);
+
+                SafeCircleFragment contactFragment = new SafeCircleFragment();
+
+                setContentView(R.layout.safe_circle_fragment);
+                getSupportFragmentManager().beginTransaction().add(R.id.safeFragLayout, contactFragment).commit();
             }
         });
 

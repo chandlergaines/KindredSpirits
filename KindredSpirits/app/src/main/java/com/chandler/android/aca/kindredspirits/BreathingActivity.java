@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -39,6 +40,8 @@ public class BreathingActivity extends AppCompatActivity{
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+        Toast.makeText(this, "Tap the circle to begin", Toast.LENGTH_LONG).show();
 
 
         mBreathingImage.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +75,7 @@ public class BreathingActivity extends AppCompatActivity{
                 mSeekSpeedProgress = value + 3000;
                 mSeekerText.setText("" + (mSeekSpeedProgress/1000) + " seconds");
                 mAnimZoomInOut.setDuration(mSeekSpeedProgress);
+                Toast.makeText(BreathingActivity.this, "Tap the circle to set new pace", Toast.LENGTH_LONG).show();
             }
 
             @Override
