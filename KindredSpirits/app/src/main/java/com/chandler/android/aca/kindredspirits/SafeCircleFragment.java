@@ -1,35 +1,62 @@
 package com.chandler.android.aca.kindredspirits;
 
-import android.annotation.SuppressLint;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class SafeCircleFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor>,
-        AdapterView.OnItemClickListener{
+import butterknife.BindView;
 
+public class SafeCircleFragment extends Fragment {
+
+    @BindView(R.id.editTextContactName)
+    EditText mContactName;
+    @BindView(R.id.editTextContactNumber)
+    EditText mContactNumber;
+    @BindView(R.id.contactButton)
+    Button mContactButton;
+
+    String mNameString;
+    String mNumberString;
+
+    Context mContext;
+
+    private View mView;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.safe_circle_list, container, false);
+
+        mContext.getApplicationContext();
+
+
+        PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("MYCONTACT", "myStringToSave").commit();
+
+
+        return mView;
+    }
+
+
+}
+
+/*
     ContactsContract mContactsContract;
 
     //todo get the search string from the user
 
     //TODO Define global variables
-    /*
+    */
+/*
      * Defines an array that contains column names to move from
      * the Cursor to the ListView.
-     */
+     *//*
+
     @SuppressLint("InlinedApi")
     private final static String[] FROM_COLUMNS = {
             Build.VERSION.SDK_INT
@@ -39,11 +66,13 @@ public class SafeCircleFragment extends Fragment
     };
 
 
-    /*
+    */
+/*
      * Defines an array that contains resource ids for the layout views
      * that get the Cursor column contents. The id is pre-defined in
      * the Android framework, so it is prefaced with "android.R.id"
-     */
+     *//*
+
     private final static int[] TO_IDS = {
             android.R.id.text1
     };
@@ -100,10 +129,12 @@ public class SafeCircleFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        /*
+        */
+/*
          * Makes search string into pattern and
          * stores it in the selection array
-         */
+         *//*
+
         mSelectionArgs[0] = "%" + mSearchString + "%";
         // Starts the query
         return new CursorLoader(
@@ -159,10 +190,12 @@ public class SafeCircleFragment extends Fragment
         mContactKey = cursor.getString(LOOKUP_KEY_INDEX);
         // Create the contact's content Uri
         mContactUri = ContactsContract.Contacts.getLookupUri(mContactId, mContactKey);
-        /*
+        */
+/*
          * You can use mContactUri as the content URI for retrieving
          * the details for a contact.
-         */
+         *//*
+
     }
 
     @Override
@@ -178,3 +211,4 @@ public class SafeCircleFragment extends Fragment
 
     }
 }
+*/

@@ -2,6 +2,7 @@
 package com.chandler.android.aca.kindredspirits;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,15 +20,24 @@ import butterknife.ButterKnife;
 
 public class SafeCircle extends AppCompatActivity {
 
-    @BindView(R.id.contact1) Button mContact1;
-    @BindView(R.id.contact2) Button mContact2;
-    @BindView(R.id.contact3) Button mContact3;
-    @BindView(R.id.contact4) Button mContact4;
-    @BindView(R.id.contact5) Button mContact5;
-    @BindView(R.id.callEmergency) Button mEmergency;
-    @BindView(R.id.btnResources) Button mBtnResources;
-    @BindView(R.id.btnSendAll) Button mSendAll;
-    @BindView(R.id.spinner) Spinner mSpinner;
+    @BindView(R.id.contact1)
+    Button mContact1;
+    @BindView(R.id.contact2)
+    Button mContact2;
+    @BindView(R.id.contact3)
+    Button mContact3;
+    @BindView(R.id.contact4)
+    Button mContact4;
+    @BindView(R.id.contact5)
+    Button mContact5;
+    @BindView(R.id.callEmergency)
+    Button mEmergency;
+    @BindView(R.id.btnResources)
+    Button mBtnResources;
+    @BindView(R.id.btnSendAll)
+    Button mSendAll;
+    @BindView(R.id.spinner)
+    Spinner mSpinner;
 
     @BindView(R.id.imageBackground)
     ImageView mBackground;
@@ -35,6 +45,8 @@ public class SafeCircle extends AppCompatActivity {
     String mContactId;
     String mContactName;
     String mContactNumber;
+
+    SharedPreferences mPrefs;
 
     Cursor cursor;
 
@@ -63,7 +75,7 @@ public class SafeCircle extends AppCompatActivity {
             }
         });
 
-        mContact1.setOnClickListener(new View.OnClickListener() {
+        mContact5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -74,56 +86,60 @@ public class SafeCircle extends AppCompatActivity {
             }
         });
 
-        /*Button button = (Button)findViewById(R.id.pickcontact);
-
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        mContact1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(intent, PICK_CONTACT);
+            public void onClick(View v) {
+
             }
-        });*/
-/*
+        });
 
+        mContact2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-        @Override public void onActivityResult(int reqCode, int resultCode, Intent data){ super.onActivityResult(reqCode, resultCode, data);
-
-            switch(reqCode)
-            {
-                case (PICK_CONTACT):
-                    if (resultCode == Activity.RESULT_OK)
-                    {
-                        Uri contactData = data.getData();
-                        Cursor c = managedQuery(contactData, null, null, null, null);
-                        if (c.moveToFirst())
-                        {
-                            String id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
-
-                            String hasPhone =
-                                    c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-
-                            if (hasPhone.equalsIgnoreCase("1"))
-                            {
-                                Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-                                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ id,null, null);
-                                phones.moveToFirst();
-                                String cNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                                // Toast.makeText(getApplicationContext(), cNumber, Toast.LENGTH_SHORT).show();
-                                setCn(cNumber);
-                            }
-                        }
-                    }
             }
-        }
+        });
 
-        mContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-        mContactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-        mContactNumber = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
-*/
+        mContact3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+
+        mContact4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
+
+    public void messageContact() {
+    Intent action = new Intent(Intent.ACTION_SEND,
+            Uri.parse("tel:" + mContactNumber));
+
+    startActivity(action);
+
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+
+        //What gets shared added in here
+
+      /*  sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mNote.getTitle());
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, "Note: " + mNote.getTitle() + "\n \n" + "Description: "+ mNote.getDescription());
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, mNote.getImage());*/
+
+        //Start the share
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
 }
+
+/*mPrefs = getSharedPreferences("Note to self", MODE_PRIVATE);
+        mSound = mPrefs.getBoolean("sound", true);
+        mAnimOption = mPrefs.getInt("anim option", NoteSettingsActivity.FAST);
+// mBackground = mPrefs.getInt("bkg option", SettingsActivity.COLORS);*/
+
+
 

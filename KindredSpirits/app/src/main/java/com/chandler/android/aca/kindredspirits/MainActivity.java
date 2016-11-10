@@ -1,15 +1,21 @@
 package com.chandler.android.aca.kindredspirits;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,23 +42,27 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.buttonNoteActivity) Button mNoteActivity;
-    @BindView(R.id.buttonKindnessActivity) Button mKindnessActivity;
-    @BindView(R.id.buttonHotlineActivity) Button mHotlineActivity;
-    @BindView(R.id.buttonLoginActivity) Button mLoginActivity;
-    @BindView(R.id.buttonRegistrationActivity) Button mRegistrationActivity;
-    @BindView(R.id.buttonBreathingActivity) Button mBreathingActivity;
-    @BindView(R.id.buttonSafe) Button mSafeActivity;
-    @BindView(R.id.button3) Button mFirebase;
-    @BindView(R.id.button5) Button mLogout;
-    @BindView(R.id.userTextView) TextView mUser;
-    @BindView(R.id.imageBackground) ImageView mBackground;
-
     FirebaseAuth mFirebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     String firebaseUser;
 
     private DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.imageBackground) ImageView mBackground;
+
+    @BindView(R.id.imageViewBreathing)
+    ImageButton mBreathingImage;
+    @BindView(R.id.seekBar)
+    SeekBar mSeekBar;
+    @BindView(R.id.textViewSeeker)
+    TextView mSeekerText;
+    @BindView(R.id.buttonPause)
+    Button mPauseButton;
+
+    Animation mAnimZoomInOut;
+    // Animation mAnimZoomOut;
+    int mSeekSpeedProgress = 3000;
+    int repeat;
 
     private EventBus mBus = EventBus.getDefault();
     String mUsername;
@@ -65,15 +75,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        String email = mFirebaseAuth.getCurrentUser().getEmail();
+
+        if (mFirebaseAuth.getCurrentUser() == null){
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {firebaseUser = mFirebaseAuth.getCurrentUser().toString();}
+
         new DrawerBuilder().withActivity(this)
                 .withTranslucentStatusBar(false)
                 .withActionBarDrawerToggle(false)
                 .build();
 
-        ButterKnife.bind(this);
-        Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener(){
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -100,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         mFirebaseAuth.signOut();
+                        Toast.makeText(getApplicationContext(), "Signing out...", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         return false;
@@ -109,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
         //user account header
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                //.withHeaderBackground()
+               // .withHeaderBackground()
                 .withSelectionListEnabled(true)
                 .addProfiles(
                         new ProfileDrawerItem()
-                                .withName("Name") //todo event bus
-                                .withEmail("Email")
+                                .withName("") //todo event bus
+                                .withEmail(email)
                                 //.withIcon(mFirebaseAuth.getCurrentUser().getPhotoUrl())
                                 .withIcon(R.mipmap.ic_launcher),
                         profileSettings
@@ -131,30 +153,35 @@ public class MainActivity extends AppCompatActivity {
         //add items to drawer
         PrimaryDrawerItem item1 = new PrimaryDrawerItem()
                 .withIdentifier(1)
-                .withName("Home")
+                .withName("Deep Breaths")
                 .withIcon(GoogleMaterial.Icon.gmd_account_balance)
                 .withTextColorRes(R.color.md_white_1000);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem()
                 .withIdentifier(2)
-                .withName("Artist")
+                .withName("Kind Words")
                 .withIcon(GoogleMaterial.Icon.gmd_perm_identity)
                 .withTextColorRes(R.color.md_white_1000);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem()
                 .withIdentifier(3)
-                .withName("Artwork")
+                .withName("Journal")
                 .withIcon(GoogleMaterial.Icon.gmd_brush)
                 .withTextColorRes(R.color.md_white_1000);
         //can add others later
-        SecondaryDrawerItem item7 = new SecondaryDrawerItem()
-                .withIdentifier(7)
-                .withName("Favorites")
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem()
+                .withIdentifier(4)
+                .withName("Hotlines")
                 .withIcon(GoogleMaterial.Icon.gmd_favorite)
                 .withTextColorRes(R.color.md_white_1000);
-        SecondaryDrawerItem item8 = new SecondaryDrawerItem()
-                .withIdentifier(8)
-                .withName("About")
+        SecondaryDrawerItem item5 = new SecondaryDrawerItem()
+                .withIdentifier(5)
+                .withName("Safe Circle")
                 .withIcon(GoogleMaterial.Icon.gmd_help)
                 .withTextColorRes(R.color.md_white_1000);
+        SecondaryDrawerItem item6 = new SecondaryDrawerItem()
+                .withIdentifier(6)
+                .withName("About")
+                .withIcon(GoogleMaterial.Icon.gmd_help)
+                .withIconColorRes(R.color.md_white_1000);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
@@ -167,96 +194,102 @@ public class MainActivity extends AppCompatActivity {
                         item2,
                         item3,
                         new DividerDrawerItem(),
-                        item7,
-                        item8
+                        item4,
+                        item5,
+                        item6
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        //Intent here
+                        goToActivity(position);
                         return false;
                     }
                 })
                 .build();
         //end MaterialDrawer
 
-        mUser.setText(firebaseUser);
 
-        mRegistrationActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
-            }
-        });
+        Toast.makeText(this, "Tap the circle to begin", Toast.LENGTH_LONG).show();
 
-        mNoteActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NoteActivity.class));
-            }
-        });
 
-        mKindnessActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, KindWordsActivity.class));
-            }
-        });
-
-        mHotlineActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HotlineActivity.class));
-            }
-        });
-
-        mLoginActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
-
-        mBreathingActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BreathingActivity.class));
-            }
-        });
-
-        mSafeActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SafeCircle.class));
-            }
-        });
-
-        mFirebase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FirebaseTest.class));
-            }
-        });
-
-        mLogout.setOnClickListener(new View.OnClickListener() {
+        mBreathingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                mAnimZoomInOut.setDuration(mSeekSpeedProgress);
+                mBreathingImage.startAnimation(mAnimZoomInOut);
 
-                if(firebaseUser == null) {
-
-                    Toast.makeText(getApplicationContext(), "No users logged in", Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    firebaseUser = mFirebaseAuth.getCurrentUser().toString();
-                    Log.e("User: ", "" + firebaseUser + " signing out...");
-                    mFirebaseAuth.signOut();
-                    Toast.makeText(getApplicationContext(), "Logging out...", Toast.LENGTH_SHORT).show();
-                }
             }
         });
+
+        mPauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mBreathingImage.setAnimation(null);
+
+            }
+        });
+
+
+        mSeekerText.setText("Change the pace using the seekbar");
+        loadAnimations();
+        repeat = 30;
+
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                mSeekSpeedProgress = value + 3000;
+                mSeekerText.setText("" + (mSeekSpeedProgress/1000) + " seconds");
+                mAnimZoomInOut.setDuration(mSeekSpeedProgress);
+                Toast.makeText(MainActivity.this, "Tap the circle to set new pace", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
+
+    private void loadAnimations() {
+
+        mAnimZoomInOut = AnimationUtils.loadAnimation(this, R.anim.zoom_in_out);
+
+    }
+
+    public void goToActivity(int position){
+        Activity activity = null;
+        Fragment fragment = null;
+        Intent intent;
+
+        switch (position){
+            case 1:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this, KindWordsActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this, NoteActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(this, HotlineActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(this, SafeCircle.class));
+                break;
+            case 7:
+                //todo about fragment
+        }
+    }
+}
 /*    //this sends the bus to all subscribers
     mBus.postSticky(new LoginEvent(mUserName.getText().toString()));
 
@@ -293,4 +326,4 @@ public class MainActivity extends AppCompatActivity {
         mBus.unregister(this);
         super.onDestroy();
     }*/
-}
+

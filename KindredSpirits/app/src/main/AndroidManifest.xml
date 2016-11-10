@@ -71,11 +71,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".BreathingActivity"
-            android:label="Deep Breathing"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".FirebaseTest"
             android:screenOrientation="portrait">
         </activity>

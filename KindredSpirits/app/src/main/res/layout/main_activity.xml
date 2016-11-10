@@ -1,135 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_breathing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.chandler.android.aca.kindredspirits.MainActivity"
-    tools:showIn="@layout/nav_drawer">
+    tools:context="com.chandler.android.aca.kindredspirits.MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:id="@+id/imageBackground"/>
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_breathing"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/circle"
+            android:id="@+id/imageViewBreathing"
+            android:contentDescription="circle that expands and contracts
+        to pace breaths"
+            android:background="@null"
+            android:alpha=".7"
+            android:tint="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/imageBreathing"
+            android:layout_marginTop="180dp"
+            android:scaleType="fitEnd"/>
+
         <ImageView
-            android:id="@+id/imageBackground"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            app:srcCompat="@drawable/dotted_circle"
+            android:id="@+id/imageBreathing"
+            android:background="@null"
+            android:tint="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+            android:paddingRight="5dp"/>
+
+        <SeekBar
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.5"/>
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageBreathing"
+            android:max="7000"
+            android:indeterminate="false"
+            android:id="@+id/seekBar"/>
 
-        <RelativeLayout
+        <TextView
+            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seekBar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:id="@+id/textViewSeeker"/>
 
-            <Button
-                android:id="@+id/buttonNoteActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="0dp"
-                android:text="Note"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pause"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/buttonPause"/>
 
-            <Button
-                android:id="@+id/buttonKindnessActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/buttonNoteActivity"
-                android:layout_alignRight="@+id/buttonNoteActivity"
-                android:layout_below="@+id/buttonNoteActivity"
-                android:layout_marginTop="15dp"
-                android:text="Kindness"/>
-
-            <Button
-                android:id="@+id/buttonHotlineActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonNoteActivity"
-                android:layout_alignStart="@+id/buttonNoteActivity"
-                android:layout_below="@+id/buttonKindnessActivity"
-                android:layout_marginTop="15dp"
-                android:text="Hotline"/>
-
-            <Button
-                android:id="@+id/buttonLoginActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonNoteActivity"
-                android:layout_alignStart="@+id/buttonNoteActivity"
-                android:layout_below="@+id/buttonHotlineActivity"
-                android:layout_marginTop="15dp"
-                android:text="Login"/>
-
-            <Button
-                android:id="@+id/buttonRegistrationActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonNoteActivity"
-                android:layout_alignStart="@+id/buttonNoteActivity"
-                android:layout_below="@+id/buttonLoginActivity"
-                android:layout_marginTop="15dp"
-                android:text="Register"/>
-
-            <Button
-                android:id="@+id/buttonBreathingActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonRegistrationActivity"
-                android:layout_alignStart="@+id/buttonRegistrationActivity"
-                android:layout_below="@+id/buttonRegistrationActivity"
-                android:layout_marginTop="15dp"
-                android:text="Breathe"/>
-
-            <Button
-                android:id="@+id/buttonSafe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonBreathingActivity"
-                android:layout_alignStart="@+id/buttonBreathingActivity"
-                android:layout_below="@+id/buttonBreathingActivity"
-                android:layout_marginTop="15dp"
-                android:text="Safe"/>
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Firebase"/>
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/button3"
-                android:text="Logout"/>
-
-            <TextView
-                android:id="@+id/userTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:paddingBottom="50dp"
-                android:text="TextView"/>
-
-
-        </RelativeLayout>
-    </FrameLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

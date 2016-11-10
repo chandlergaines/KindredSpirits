@@ -73,17 +73,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null) {
-                    Log.v("FirebaseAuth", " user: " + user);
-                    mActualUser = user.getUid();
-                } else { Log.v("FirebaseAuth", " not logged in");}
-            }
-        };
-
         //attaching click listener
         mEmailSignInButton.setOnClickListener(this);
         mRegister.setOnClickListener(this);

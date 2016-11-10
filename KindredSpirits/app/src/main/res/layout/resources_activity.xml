@@ -6,7 +6,7 @@
     android:id="@+id/activity_breathing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chandler.android.aca.kindredspirits.BreathingActivity">
+    tools:context="com.chandler.android.aca.kindredspirits.ResourcesActivity">
 
     <ImageView
         android:id="@+id/imageBackground"
