@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Don\'t have an account? Register here."
+                    android:text="@string/register_here"
                     android:textAlignment="center"/>
 
             </LinearLayout>

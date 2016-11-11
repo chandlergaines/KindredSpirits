@@ -17,8 +17,7 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/circle"
             android:id="@+id/imageViewBreathing"
-            android:contentDescription="circle that expands and contracts
-            to pace breaths"
+            android:contentDescription="@string/circle_image_desc"
             android:background="@null"
             android:alpha=".7"
             android:tint="@color/colorPrimaryDark"
@@ -50,7 +49,7 @@
             android:id="@+id/seekBar"/>
 
         <TextView
-            android:text="TextView"
+            android:text="@string/seekbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/seekBar"
@@ -64,7 +63,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pause"
+            android:text="@string/pause"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"

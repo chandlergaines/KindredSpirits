@@ -1,18 +1,18 @@
 package com.chandler.android.aca.kindredspirits;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.BindView;
 
-public class SafeCircleFragment extends Fragment {
+public class SafeCircleFragment extends DialogFragment {
 
     @BindView(R.id.editTextContactName)
     EditText mContactName;
@@ -30,16 +30,13 @@ public class SafeCircleFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.safe_circle_list, container, false);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        mContext.getApplicationContext();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.safe_circle_dialog, null);
 
-
-        PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("MYCONTACT", "myStringToSave").commit();
-
-
-        return mView;
+        return builder.create();
     }
 
 
@@ -99,7 +96,7 @@ public class SafeCircleFragment extends Fragment {
     //A UI Fragment must inflate its view
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.safe_circle_list, container, false);
+        mView = inflater.inflate(R.layout.safe_circle_dialog, container, false);
 
         return mView;
     }

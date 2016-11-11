@@ -13,12 +13,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SafeCircle extends AppCompatActivity {
+public class SafeCircleActivity extends AppCompatActivity {
 
     @BindView(R.id.contact1)
     Button mContact1;
@@ -48,7 +56,13 @@ public class SafeCircle extends AppCompatActivity {
 
     SharedPreferences mPrefs;
 
+    DatabaseReference mDataRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mConditionRef = mDataRootRef.child("contacts");
+
     Cursor cursor;
+    List mContactList;
+    SafeContact mContact;
+    SafeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,33 @@ public class SafeCircle extends AppCompatActivity {
 
         ButterKnife.bind(this);
         Picasso.with(this).load(R.drawable.wallpaper).fit().into(mBackground);
+
+        mConditionRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                mContactList = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+
+                    //todo figure out how to pull only as many as are needed
+
+                    mContact = new SafeContact();
+                    mContact = dataSnapshot.child("" + (i + 1)).getValue(SafeContact.class);
+                    mContactList.add(mContact);
+
+                }
+
+                mAdapter = new SafeAdapter(SafeCircleActivity.this);
+                mAdapter.setContactList(mContactList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
 
         mEmergency.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,24 +112,31 @@ public class SafeCircle extends AppCompatActivity {
         mBtnResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SafeCircle.this, HotlineActivity.class));
+                startActivity(new Intent(SafeCircleActivity.this, HotlineActivity.class));
             }
         });
 
         mContact5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SafeCircleFragment contactFragment = new SafeCircleFragment();
-
-                setContentView(R.layout.safe_circle_fragment);
-                getSupportFragmentManager().beginTransaction().add(R.id.safeFragLayout, contactFragment).commit();
+                SafeCircleFragment dialog = new SafeCircleFragment();
+                dialog.show(getFragmentManager(), "");
             }
         });
 
         mContact1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAdapter.getContactList();
+                SafeContact mContact = (SafeContact) mContactList.get(0);
+                String name = mContact.getContactName();
+                String num = mContact.getContactNumber();
+
+                Intent action = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:" + num));
+                startActivity(action);
+
+                mContact1.setText(name);
 
             }
         });
@@ -116,30 +164,24 @@ public class SafeCircle extends AppCompatActivity {
     }
 
     public void messageContact() {
-    Intent action = new Intent(Intent.ACTION_SEND,
-            Uri.parse("tel:" + mContactNumber));
+        Intent action = new Intent(Intent.ACTION_SEND,
+                Uri.parse("tel:" + mContactNumber));
 
-    startActivity(action);
+        startActivity(action);
 
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
 
         //What gets shared added in here
 
-      /*  sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mNote.getTitle());
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, "Note: " + mNote.getTitle() + "\n \n" + "Description: "+ mNote.getDescription());
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, mNote.getImage());*/
+      /*  sharingIntent.putExtra(android.content.Intent.EXTRA, mContact.getNumber());
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, default message);*/
 
         //Start the share
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
 }
-
-/*mPrefs = getSharedPreferences("Note to self", MODE_PRIVATE);
-        mSound = mPrefs.getBoolean("sound", true);
-        mAnimOption = mPrefs.getInt("anim option", NoteSettingsActivity.FAST);
-// mBackground = mPrefs.getInt("bkg option", SettingsActivity.COLORS);*/
 
 
 

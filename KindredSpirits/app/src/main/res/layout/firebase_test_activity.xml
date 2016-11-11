@@ -45,7 +45,7 @@
                 android:id="@+id/addButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Add New Item"/>
+                android:text="@string/add_new_item"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

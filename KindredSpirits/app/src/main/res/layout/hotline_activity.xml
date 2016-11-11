@@ -25,9 +25,6 @@
         android:id="@+id/listViewHotline"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".HotlineActivity"
-        tools:showIn="@layout/hotline_activity"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        tools:showIn="@layout/hotline_activity"/>
 </LinearLayout>
 </RelativeLayout>

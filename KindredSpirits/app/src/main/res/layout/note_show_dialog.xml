@@ -48,7 +48,7 @@
     </RelativeLayout>
 
     <TextView
-        android:text="TextView"
+        android:text="@string/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageLayout"
@@ -59,7 +59,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtTitle"
@@ -89,7 +89,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginEnd="15dp"
         android:id="@+id/btnSend"
-        android:text="Send"
+        android:text="@string/send"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/imageView"
         android:layout_alignParentRight="true"

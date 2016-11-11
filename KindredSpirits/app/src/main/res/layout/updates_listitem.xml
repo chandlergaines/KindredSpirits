@@ -24,7 +24,7 @@
             android:id="@+id/updatesSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subject"
+            android:text="@string/subject"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp"/>
 
@@ -32,14 +32,12 @@
             android:id="@+id/updatesMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/updatesSubject"
-            android:text="Message Body"/>
+            android:text="@string/message_body"/>
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                      android:id="@+id/updatesHolder"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_below="@+id/updatesMessage"
                      android:orientation="vertical">
         </FrameLayout>
     </LinearLayout>

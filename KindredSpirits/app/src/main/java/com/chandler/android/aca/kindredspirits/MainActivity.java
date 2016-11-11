@@ -1,10 +1,10 @@
 package com.chandler.android.aca.kindredspirits;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     int mSeekSpeedProgress = 3000;
     int repeat;
 
+    View mView;
+
     private EventBus mBus = EventBus.getDefault();
     String mUsername;
     String mEmail;
@@ -100,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
+                    // user is signed in
                     Log.v("FirebaseAuth", "onAuthStateChanged:signed_in:" + user.getUid());
                     firebaseUser = user.getUid();
                 } else {
-                    // User is signed out
+                    // user is signed out
                     Log.v("FirebaseAuth", "onAuthStateChanged:signed_out");
                     firebaseUser = "No one is logged in";
                 }
@@ -178,20 +180,20 @@ public class MainActivity extends AppCompatActivity {
                 .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item5 = new SecondaryDrawerItem()
                 .withIdentifier(5)
-                .withName("Safe Circle")
+                .withName("Safe Circle (COMING SOON!)")
                 .withIcon(FontAwesome.Icon.faw_paper_plane)
                 .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item6 = new SecondaryDrawerItem()
                 .withIdentifier(6)
-                .withName("About")
-                .withIcon(GoogleMaterial.Icon.gmd_help)
+                .withName("Updates")
+                .withIcon(FontAwesome.Icon.faw_bolt)
                 .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item7 = new SecondaryDrawerItem()
                 .withIdentifier(7)
-                .withName("Updates")
-                .withIcon(FontAwesome.Icon.faw_bolt)
+                .withName("About")
+                .withIcon(GoogleMaterial.Icon.gmd_help)
                 .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
 
@@ -280,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToActivity(int position){
         Activity activity = null;
         Fragment fragment = null;
-        Intent intent;
 
         switch (position){
             case 1:
@@ -296,51 +297,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, HotlineActivity.class));
                 break;
             case 6:
-                startActivity(new Intent(this, SafeCircle.class));
+               // startActivity(new Intent(this, SafeCircleActivity.class));
                 break;
             case 7:
-                //todo about fragment
+                startActivity(new Intent(this, UpdatesActivity.class));
                 break;
             case 8:
-                startActivity(new Intent(this, UpdatesActivity.class));
+                startActivity(new Intent(this, About.class));
                 break;
         }
     }
 }
-/*    //this sends the bus to all subscribers
-    mBus.postSticky(new LoginEvent(mUserName.getText().toString()));
-
-    //Recieving event when it happens
-    @Subscribe
-    public void onLoginEvent(LoginEvent event){
-        mUsername = event.mUserNameBus;
-        mEmail = event.mUserEmailBus;
-    }
-
-
-    Receiving login event when it happens
-    Using sticky - true telling the activity to go and get the last LoginEvent
-
-    Subscribe    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onLoginEvent(LoginEvent event) {
-        mUserStatus.setText("User Status: Logged In, userName: " + event.mUserName);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mBus.register(this); //registering the event bus
-    }
-
-    @Override
-    public void onStop() {
-        mBus.unregister(this); //unregister the event bus
-        super.onStop(); //nothing will be completed after this line is executed
-    }
-
-    @Override
-    protected void onDestroy() {
-        mBus.unregister(this);
-        super.onDestroy();
-    }*/
 

@@ -29,37 +29,7 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextFirstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:hint="First name"
-                android:inputType="textPersonName"/>
 
-            <EditText
-                android:id="@+id/editTextLastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:hint="Last name"
-                android:inputType="textPersonName"/>
-
-            <EditText
-                android:id="@+id/editTextUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:hint="Username"/>
-
-            <EditText
-                android:id="@+id/editTextMobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:ems="10"
-                android:hint="Mobile Number"
-                android:inputType="number"/>
 
             <EditText
                 android:id="@+id/editTextEmail"

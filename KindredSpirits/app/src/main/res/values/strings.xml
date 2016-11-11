@@ -42,4 +42,56 @@
     <string name="thumbs_up">&#xf164;</string>
     <string name="thumbs_down">&#xf165;</string>
     <string name="lightbulb">&#xf0eb;</string>
+    <string name="add_new_item">Add New Item</string>
+    <string name="title">title</string>
+    <string name="number">555-0123</string>
+    <string name="details">stuff and things</string>
+    <string name="call">Call</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="knope_compliments">Leslie Knope Compliments</string>
+    <string name="encouraging_quotes">Encouraging Quotes</string>
+    <string name="affirmations">Affirmations</string>
+    <string name="be_nice">BE NICE TO ME</string>
+    <string name="kind_words">Kind Words</string>
+    <string name="register_here">Don\'t have an account? Register here.</string>
+    <string name="circle_image_desc">circle that expands and contracts to pace breaths</string>
+    <string name="seekbar">TextView</string>
+    <string name="pause">pause</string>
+    <string name="reminder">Reminder</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="send">Send</string>
+    <string name="call_911">Call 911</string>
+    <string name="get_help">Get help now</string>
+    <string name="send_all">Send to all</string>
+    <string name="john_doe">John Doe</string>
+    <string name="default_message">Default message</string>
+    <string name="subject">Subject</string>
+    <string name="message_body">Message Body</string>
+    <string name="kindred_about">The Kindred Spirits audience is primarily the LGBT community.
+        From the teens who are still figuring out identity
+        to the individuals who are seeking resources and connection.
+        They are looking for resources and community, and we would like to
+        provide it.</string>
+    <string name="about_app">About Kindred Spirits</string>
+    <string name="dependencies_title">Dependencies and Third Party Libraries Used</string>
+
+        <string name="apache_license">Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License. </string>
+    <string name="butterknife">ButterKnife</string>
+    <string name="butterknife_cr">Copyright 2013 Jake Wharton</string>
+    <string name="firebase">Firebase</string>
+    <string name="material_drawer">MaterialDrawer</string>
+    <string name="material_drawer_cr">Copyright 2016 Mike Penz</string>
+    <string name="chandler_cr">Copyright 2016 Chandler Gaines</string>
+    <string name="picasso">Picasso</string>
+    <string name="square_cr">Copyright 2013 Square, Inc</string>
+    <string name="retrofit">Retrofit</string>
 </resources>

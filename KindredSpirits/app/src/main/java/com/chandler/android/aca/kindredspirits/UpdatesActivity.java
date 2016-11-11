@@ -65,7 +65,9 @@ public class UpdatesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 mUpdatesList = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 4; i++) {
+
+                    //todo figure out how to pull only as many as are needed
 
                     mUpdates = new Updates();
                     mUpdates = dataSnapshot.child("" + (i + 1)).getValue(Updates.class);

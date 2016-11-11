@@ -25,16 +25,9 @@ import butterknife.ButterKnife;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    @BindView(R.id.editTextFirstName)
-    EditText mFirstName;
-    @BindView(R.id.editTextLastName)
-    EditText mLastName;
-    @BindView(R.id.editTextUsername)
-    EditText mUsername;
+
     @BindView(R.id.editTextPassword)
     EditText mPassword;
-    @BindView(R.id.editTextMobile)
-    EditText mMoblieNumber;
     @BindView(R.id.editTextEmail)
     EditText mEmail;
     @BindView(R.id.buttonSignup)
@@ -74,28 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-        String firstName = mFirstName.getText().toString().trim();
-        String lastName = mLastName.getText().toString().trim();
-        String userName = mUsername.getText().toString().trim();
-        String moblieNumber = mMoblieNumber.getText().toString().trim();
 
-
-        if(TextUtils.isEmpty(firstName)){
-            mFirstName.setError("Please enter your preferred name");
-            return;
-        }
-        if(TextUtils.isEmpty(lastName)){
-            mLastName.setError("Please enter your last name");
-            return;
-        }
-        if(TextUtils.isEmpty(userName)){
-            mUsername.setError("Please enter a username");
-            return;
-        }
-        if(TextUtils.isEmpty(moblieNumber)){
-            mMoblieNumber.setError("Please enter your moblie number");
-            return;
-        }
         if(TextUtils.isEmpty(email)){
             mEmail.setError("Please enter a valid email address");
             return;
@@ -127,24 +99,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                 });
     }
-
-/*    @Override
-    protected void onStart() {
-        super.onStart();
-        mBus.register(this); //registering the event bus
-    }
-
-    @Override
-    public void onStop() {
-        mBus.unregister(this); //unregister the event bus
-        super.onStop(); //nothing will be completed after this line is executed
-    }
-
-    @Override
-    protected void onDestroy() {
-        mBus.unregister(this);
-        super.onDestroy();
-    }*/
 
 }
 

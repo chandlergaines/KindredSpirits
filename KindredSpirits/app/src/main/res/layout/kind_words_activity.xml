@@ -37,7 +37,7 @@
                 android:buttonTint="@color/colorAccent"
                 android:checked="true"
                 android:onClick="onCheckboxClicked"
-                android:text="Kind Words"
+                android:text="@string/kind_words"
                 android:textColor="@color/colorPrimaryDark"/>
 
             <CheckBox
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/colorAccent"
                 android:onClick="onCheckboxClicked"
-                android:text="Leslie Knope Compliments"
+                android:text="@string/knope_compliments"
                 android:textColor="@color/colorPrimaryDark"/>
 
             <CheckBox
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/colorAccent"
                 android:onClick="onCheckboxClicked"
-                android:text="Encouraging Quotes"
+                android:text="@string/encouraging_quotes"
                 android:textColor="@color/colorPrimaryDark"/>
 
             <CheckBox
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/colorAccent"
                 android:onClick="onCheckboxClicked"
-                android:text="Affirmations"
+                android:text="@string/affirmations"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_marginBottom="10dp"/>
         </LinearLayout>
@@ -79,7 +79,7 @@
         android:layout_centerVertical="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:textStyle="bold|italic"/>
 
     <Button
@@ -89,7 +89,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:text="BE NICE TO ME"/>
+        android:text="@string/be_nice"/>
 
 
 </RelativeLayout>
