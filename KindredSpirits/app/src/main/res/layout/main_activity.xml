@@ -8,12 +8,6 @@
     android:layout_height="match_parent"
     tools:context="com.chandler.android.aca.kindredspirits.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.5"
-        android:id="@+id/imageBackground"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,7 +18,7 @@
             app:srcCompat="@drawable/circle"
             android:id="@+id/imageViewBreathing"
             android:contentDescription="circle that expands and contracts
-        to pace breaths"
+            to pace breaths"
             android:background="@null"
             android:alpha=".7"
             android:tint="@color/colorPrimaryDark"
@@ -47,6 +41,8 @@
         <SeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/imageBreathing"
             android:max="7000"

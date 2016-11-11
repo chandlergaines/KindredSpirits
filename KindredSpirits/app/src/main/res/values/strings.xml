@@ -37,4 +37,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- Font Awesome -->
+    <string name="thumbs_up">&#xf164;</string>
+    <string name="thumbs_down">&#xf165;</string>
+    <string name="lightbulb">&#xf0eb;</string>
 </resources>

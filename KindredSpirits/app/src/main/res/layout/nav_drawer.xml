@@ -8,6 +8,16 @@
     android:fitsSystemWindows="true"
     tools:context="com.chandler.android.aca.kindredspirits.MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.5"
+            android:id="@+id/imageBackground"/>
+
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
             android:layout_height="wrap_content"
@@ -22,7 +32,11 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/main_activity" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/main_activity"/>
+
 
     </android.support.design.widget.CoordinatorLayout>
 

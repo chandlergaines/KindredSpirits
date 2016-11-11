@@ -42,46 +42,61 @@
         <activity
             android:name=".NoteSettingsActivity"
             android:label="Log Settings"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".NoteActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".KindWordsActivity"
             android:label="Good Vibes"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:label="Anxiety Log"
+            android:label="Journal"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".HotlineActivity"
             android:label="Hotlines"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".RegistrationActivity"
             android:label="Registration"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".FirebaseTest"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".SafeCircle"
             android:label="Safe Circle"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ResourcesActivity"
             android:label="Resources"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".UpdatesActivity"
+            android:label="Updates"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
 
@@ -97,8 +112,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".UpdatesActivity">
-        </activity>
     </application>
 
 </manifest>

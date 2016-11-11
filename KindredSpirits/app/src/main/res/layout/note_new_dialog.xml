@@ -53,7 +53,7 @@
             android:buttonTint="@color/accent"
             android:textColor="@color/colorPrimaryDark"
             android:checked="false"
-            android:text="@string/idea_checkbox"/>
+            android:text="Reminder"/>
 
         <CheckBox
             android:id="@+id/checkBoxTodo"
@@ -68,7 +68,7 @@
             android:buttonTint="@color/accent"
             android:textColor="@color/colorPrimaryDark"
             android:checked="false"
-            android:text="@string/todo_checkbox"/>
+            android:text="Positive"/>
 
         <CheckBox
             android:id="@+id/checkBoxImportant"
@@ -83,7 +83,7 @@
             android:buttonTint="@color/accent"
             android:textColor="@color/colorPrimaryDark"
             android:checked="false"
-            android:text="@string/important_checkbox"/>
+            android:text="Negative"/>
 
         <Button
             android:id="@+id/btnCancel"

@@ -49,8 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.email_sign_in_button) Button mEmailSignInButton;
     @BindView(R.id.register) TextView mRegister;
 
-    @BindView(R.id.imageBackground)
-    ImageView mBackground;
+    @BindView(R.id.imageBackground) ImageView mBackground;
 
     EventBus mBus;
 
@@ -77,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mEmailSignInButton.setOnClickListener(this);
         mRegister.setOnClickListener(this);
 
-        mActualUser = mFirebaseUser.toString();
+        if (mFirebaseUser != null){mActualUser = mFirebaseUser.toString();}
        // mBus.postSticky(new LoginEvent(mUserName.getText().toString()));
     }
 

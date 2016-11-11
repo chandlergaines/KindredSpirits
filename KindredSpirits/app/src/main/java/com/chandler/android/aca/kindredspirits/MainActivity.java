@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    @BindView(R.id.imageBackground) ImageView mBackground;
+    @BindView(R.id.imageBackground)
+    ImageView mBackground;
 
     @BindView(R.id.imageViewBreathing)
     ImageButton mBreathingImage;
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     Button mPauseButton;
 
     Animation mAnimZoomInOut;
-    // Animation mAnimZoomOut;
     int mSeekSpeedProgress = 3000;
     int repeat;
 
@@ -131,14 +132,13 @@ public class MainActivity extends AppCompatActivity {
         //user account header
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-               // .withHeaderBackground()
+                .withHeaderBackground(R.drawable.cat_header)
                 .withSelectionListEnabled(true)
                 .addProfiles(
                         new ProfileDrawerItem()
-                                .withName("") //todo event bus
                                 .withEmail(email)
                                 //.withIcon(mFirebaseAuth.getCurrentUser().getPhotoUrl())
-                                .withIcon(R.mipmap.ic_launcher),
+                                .withIcon(R.drawable.kindred),
                         profileSettings
                 )
                 .withDividerBelowHeader(true)
@@ -154,34 +154,46 @@ public class MainActivity extends AppCompatActivity {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem()
                 .withIdentifier(1)
                 .withName("Deep Breaths")
-                .withIcon(GoogleMaterial.Icon.gmd_account_balance)
-                .withTextColorRes(R.color.md_white_1000);
+                .withIcon(FontAwesome.Icon.faw_heartbeat)
+                .withTextColorRes(R.color.md_white_1000)
+                .withIconColorRes(R.color.accent);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem()
                 .withIdentifier(2)
-                .withName("Kind Words")
-                .withIcon(GoogleMaterial.Icon.gmd_perm_identity)
+                .withName("Good Vibes")
+                .withIcon(FontAwesome.Icon.faw_hand_spock_o)
+                .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem()
                 .withIdentifier(3)
                 .withName("Journal")
-                .withIcon(GoogleMaterial.Icon.gmd_brush)
+                .withIcon(FontAwesome.Icon.faw_book)
+                .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         //can add others later
         SecondaryDrawerItem item4 = new SecondaryDrawerItem()
                 .withIdentifier(4)
                 .withName("Hotlines")
-                .withIcon(GoogleMaterial.Icon.gmd_favorite)
+                .withIcon(FontAwesome.Icon.faw_phone)
+                .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item5 = new SecondaryDrawerItem()
                 .withIdentifier(5)
                 .withName("Safe Circle")
-                .withIcon(GoogleMaterial.Icon.gmd_help)
+                .withIcon(FontAwesome.Icon.faw_paper_plane)
+                .withIconColorRes(R.color.accent)
                 .withTextColorRes(R.color.md_white_1000);
         SecondaryDrawerItem item6 = new SecondaryDrawerItem()
                 .withIdentifier(6)
                 .withName("About")
                 .withIcon(GoogleMaterial.Icon.gmd_help)
-                .withIconColorRes(R.color.md_white_1000);
+                .withIconColorRes(R.color.accent)
+                .withTextColorRes(R.color.md_white_1000);
+        SecondaryDrawerItem item7 = new SecondaryDrawerItem()
+                .withIdentifier(7)
+                .withName("Updates")
+                .withIcon(FontAwesome.Icon.faw_bolt)
+                .withIconColorRes(R.color.accent)
+                .withTextColorRes(R.color.md_white_1000);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
@@ -196,7 +208,8 @@ public class MainActivity extends AppCompatActivity {
                         new DividerDrawerItem(),
                         item4,
                         item5,
-                        item6
+                        item6,
+                        item7
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -287,6 +300,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 7:
                 //todo about fragment
+                break;
+            case 8:
+                startActivity(new Intent(this, UpdatesActivity.class));
+                break;
         }
     }
 }
